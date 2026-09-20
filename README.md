@@ -1,11 +1,11 @@
-<div align="center">
+﻿<div align="center">
 
 # ChunkClaim
 
 **Chunk-based land claiming for Paper / Purpur 26.2 — one control block, a hologram, a full GUI, animated border preview and Vault / diamond economy.**
 
-[![Build](https://github.com/AlpayTaner/ChunkClaim/actions/workflows/build.yml/badge.svg)](https://github.com/AlpayTaner/ChunkClaim/actions/workflows/build.yml)
-[![Release](https://img.shields.io/github/v/release/AlpayTaner/ChunkClaim?include_prereleases)](https://github.com/AlpayTaner/ChunkClaim/releases)
+[![Build](https://github.com/alpyxd/ChunkClaim/actions/workflows/build.yml/badge.svg)](https://github.com/alpyxd/ChunkClaim/actions/workflows/build.yml)
+[![Release](https://img.shields.io/github/v/release/alpyxd/ChunkClaim?include_prereleases)](https://github.com/alpyxd/ChunkClaim/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Paper](https://img.shields.io/badge/Paper%2FPurpur-26.2-blue)
 ![Java](https://img.shields.io/badge/Java-25-orange)
@@ -38,7 +38,7 @@
 ### 📦 Installation
 
 1. Requires **Paper or Purpur 26.2** and **Java 25**.
-2. Download the latest jar from [Releases](https://github.com/AlpayTaner/ChunkClaim/releases) and drop it into `plugins/`.
+2. Download the latest jar from [Releases](https://github.com/alpyxd/ChunkClaim/releases) and drop it into `plugins/`.
 3. *(Optional)* Install [Vault](https://www.spigotmc.org/resources/vault.34315/) + an economy plugin for money-based pricing. Without Vault, diamonds are used automatically.
 4. Start the server, then edit `plugins/ChunkClaim/config.yml` and `lang/*.yml` to taste. `/claim reload` applies changes.
 
@@ -93,7 +93,7 @@ Claims are stored as `plugins/ChunkClaim/claims/<uuid>.yml`.
 ### 🔨 Building from source
 
 ```bash
-git clone https://github.com/AlpayTaner/ChunkClaim.git
+git clone https://github.com/alpyxd/ChunkClaim.git
 cd ChunkClaim
 ./gradlew build          # Windows: .\gradlew.bat build
 ```
@@ -127,7 +127,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 ### 📦 Kurulum
 
 1. **Paper veya Purpur 26.2** ve **Java 25** gerekir.
-2. [Releases](https://github.com/AlpayTaner/ChunkClaim/releases) sayfasından jar'ı indirip `plugins/` klasörüne at.
+2. [Releases](https://github.com/alpyxd/ChunkClaim/releases) sayfasından jar'ı indirip `plugins/` klasörüne at.
 3. *(İsteğe bağlı)* Para ekonomisi için [Vault](https://www.spigotmc.org/resources/vault.34315/) + bir ekonomi eklentisi kur. Vault yoksa otomatik elmas kullanılır.
 4. Sunucuyu başlat, `plugins/ChunkClaim/config.yml` ve `lang/*.yml` dosyalarını düzenle. `/claim reload` ile uygula.
 
@@ -158,7 +158,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 ### 🔨 Kaynaktan derleme
 
 ```bash
-git clone https://github.com/AlpayTaner/ChunkClaim.git
+git clone https://github.com/alpyxd/ChunkClaim.git
 cd ChunkClaim
 .\gradlew.bat build      # Linux/macOS: ./gradlew build
 ```
