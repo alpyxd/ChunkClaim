@@ -1,0 +1,360 @@
+# ChunkClaim — Türkçe dil dosyası (MiniMessage formatı)
+# Eksik anahtarlar jar içindeki varsayılandan tamamlanır.
+
+prefix: "<gradient:#55ff55:#00aa00><bold>Claim</bold></gradient> <dark_gray>» <gray>"
+
+# ---------- Genel ----------
+no-permission: "<red>Bu işlem için yetkin yok."
+player-only: "<red>Bu komut sadece oyuncular tarafından kullanılabilir."
+reloaded: "<green>Yapılandırma yeniden yüklendi."
+player-not-found: "<red>Oyuncu bulunamadı: <white>{player}"
+state-on: "<green>AÇIK"
+state-off: "<red>KAPALI"
+
+# ---------- Claim bloğu (eşya) ----------
+claim-block:
+  name: "<gradient:#55ff55:#00aa00><bold>Claim Yönetim Bloğu</bold></gradient>"
+  lore:
+    - "<gray>Bu bloğu yerleştirerek bulunduğun"
+    - "<gray>chunk'ı claim edersin."
+    - ""
+    - "<yellow>Sağ tık <gray>ile yönetim menüsünü aç."
+
+# ---------- Hologram ----------
+hologram:
+  lines:
+    - "<gradient:#55ff55:#00aa00><bold>{name}</bold></gradient>"
+    - "<gray>Sahip: <white>{owner}"
+    - "<gray>Chunk: <white>{chunks}<gray>/<white>{max_chunks}"
+    - "<gray>Üye: <white>{members}<gray>/<white>{max_members}"
+    - "<yellow>Sağ tık: Yönetim"
+
+# ---------- Giriş / çıkış (action bar) ----------
+titles:
+  enter: "<green>▶ <white>{name} <gray>alanına girdin"
+  leave: "<red>◀ <white>{name} <gray>alanından çıktın"
+
+# ---------- Oluşturma / silme ----------
+creation-default-name: "{player}'in Alanı"
+claim-created: "<green>Claim oluşturuldu! <gray>Bloğa sağ tıklayarak yönetebilirsin."
+creation-name-prompt: "<yellow>Claim'ine bir isim ver! <gray>Sohbete yaz (en fazla <white>{max}<gray> karakter). Varsayılan için <white>iptal<gray> yaz."
+creation-name-default: "<gray>Claim ismi: <white>{name} <dark_gray>(menüden değiştirebilirsin)"
+claim-removed: "<yellow>Claim kaldırıldı. <gray>Tüm chunklar serbest bırakıldı."
+claim-block-given: "<green>{amount}x claim bloğu verildi: <white>{player}"
+claim-block-received: "<green>{amount}x claim bloğu aldın."
+chunk-already-claimed: "<red>Bu chunk zaten <white>{name}<red> adlı claim'e ait."
+world-not-allowed: "<red>Bu dünyada claim yapılamaz."
+max-claims-reached: "<red>Maksimum claim sayısına ulaştın (<white>{max}<red>)."
+too-close: "<red>Başka bir claim'e çok yakınsın. En az <white>{distance}<red> chunk uzakta olmalı."
+cannot-break-claim-block: "<red>Claim yönetim bloğu kırılamaz."
+claim-block-use-menu: "<yellow>Yönetim bloğu kırılamaz. <gray>Claim'i silmek için menüden <white>Claim'i Sil<gray> veya <white>/claim delete<gray> kullan."
+delete-confirm-prompt: "<red><bold>SON ADIM:</bold> <gray>Silmeyi onaylamak için claim ismini birebir yaz: <white>{name}<gray>. İptal için <white>iptal<gray> yaz."
+delete-name-mismatch: "<red>İsim eşleşmedi, silme iptal edildi. <gray>(Beklenen: <white>{name}<gray>)"
+delete-cancelled: "<gray>Silme iptal edildi."
+
+# ---------- Chunk ----------
+chunk-claimed: "<green>Chunk claim edildi! <gray>(<white>{chunks}<gray>/<white>{max}<gray>) Ödenen: <white>{cost}"
+chunk-unclaimed: "<yellow>Chunk bırakıldı. <gray>İade: <white>{refund}"
+chunk-not-adjacent: "<red>Sadece mevcut alanına komşu chunkları claim edebilirsin / bırakınca alan bölünemez."
+chunk-limit-reached: "<red>Chunk limitine ulaştın (<white>{max}<red>). <gray>Geliştirme menüsünden limiti artırabilirsin."
+chunk-not-yours: "<red>Bu chunk senin claim'ine ait değil."
+chunk-is-origin: "<red>Ana chunk (yönetim bloğunun olduğu chunk) bırakılamaz."
+chunk-different-world: "<red>Claim'in başka bir dünyada."
+not-enough-money: "<red>Yeterli bakiyen yok. <gray>Gerekli: <white>{cost}<gray>, Bakiye: <white>{balance}"
+
+# ---------- Üyeler ----------
+member-added: "<green>{player} <gray>üye olarak eklendi."
+member-removed: "<yellow>{player} <gray>üyelikten çıkarıldı."
+member-already: "<red>{player} <gray>zaten üye."
+member-limit-reached: "<red>Üye limitine ulaştın (<white>{max}<red>)."
+member-cannot-add-self: "<red>Kendini üye olarak ekleyemezsin."
+member-add-prompt: "<yellow>Eklemek istediğin oyuncunun adını sohbete yaz. <gray>İptal için <white>iptal<gray> yaz."
+member-add-cancelled: "<gray>Üye ekleme iptal edildi."
+member-cannot-remove-manager: "<red>Yönetim yetkisi olan bir üyeyi sadece sahip yönetebilir."
+no-claim-permission: "<red>Bu claim'de <white>{permission}<red> iznin yok."
+permission-toggled: "<gray>{player} <dark_gray>» <gray>{permission}: {state}"
+permission-owner-only: "<red>Yönetim izinlerini sadece claim sahibi verebilir."
+
+# ---------- Ayarlar / geliştirmeler ----------
+flag-toggled: "<gray>{flag}: {state}"
+upgrade-purchased: "<green>{upgrade} <gray>geliştirildi! <gray>Yeni seviye: <white>{level}"
+upgrade-max-level: "<red>Bu geliştirme zaten maksimum seviyede."
+
+# ---------- Koruma ----------
+protection-build: "<red>Burada inşa edemezsin."
+protection-break: "<red>Burada blok kıramazsın."
+protection-interact: "<red>Burada bununla etkileşime giremezsin."
+protection-container: "<red>Bu sandığa erişemezsin."
+protection-pvp: "<red>Bu alanda PvP kapalı."
+protection-animal: "<red>Bu alandaki hayvanlara zarar veremezsin."
+protection-enter: "<red>Bu alana giriş yetkin yok."
+protection-drop: "<red>Bu alanda eşya atamazsın."
+protection-use: "<red>Bu alanda bu eşyayı kullanamazsın."
+
+# ---------- Işınlanma ----------
+teleport-warmup: "<gray>{name} <gray>alanına ışınlanıyorsun… <white>{seconds}<gray> saniye hareket etme!"
+teleport-countdown: "<aqua>Işınlanma: <white>{seconds}s"
+teleport-cancelled: "<red>Işınlanma iptal edildi."
+teleport-done: "<green>{name} <gray>alanına ışınlandın."
+teleport-failed: "<red>Işınlanma başarısız oldu."
+teleport-cooldown: "<red>Tekrar ışınlanmak için <white>{seconds}<red> saniye bekle."
+teleport-already-pending: "<red>Zaten bir ışınlanma bekliyor."
+teleport-no-home: "<red>Bu claim'in ışınlanma noktası yok."
+home-set: "<green>Ev noktası bulunduğun yere ayarlandı."
+home-outside-claim: "<red>Ev noktası sadece kendi claim'inin içinde ayarlanabilir."
+
+# ---------- Komutlar ----------
+no-claim: "<red>Bir claim'in yok. <gray>Claim bloğu yerleştirerek oluşturabilirsin."
+not-in-claim: "<gray>Burası vahşi doğa, kimseye ait değil."
+claim-info: "<gray>Claim: <white>{name} <dark_gray>| <gray>Sahip: <white>{owner} <dark_gray>| <gray>Chunk: <white>{chunks}"
+not-manage-permission: "<red>Bu işlemi sadece claim sahibi yapabilir."
+border-shown: "<gray>{name} <gray>alanının sınırı gösteriliyor…"
+name-prompt: "<yellow>Yeni claim ismini sohbete yaz. <gray>İptal için <white>iptal<gray> yaz."
+name-changed: "<green>Claim ismi değiştirildi: <white>{name}"
+name-too-long: "<red>İsim 1-<white>{max}<red> karakter arasında olmalı."
+name-invalid: "<red>İsimde izin verilmeyen karakterler var. <gray>Harf, rakam, boşluk ve _ ' - . ! ? kullanabilirsin."
+prompt-expired: "<gray>Sohbet isteği zaman aşımına uğradı."
+help: |-
+  <gradient:#55ff55:#00aa00><bold>ChunkClaim Komutları</bold></gradient>
+  <yellow>/claim <gray>- Yönetim menüsünü aç
+  <yellow>/claim info <gray>- Bulunduğun chunk'ın bilgisi
+  <yellow>/border <gray>- Alan sınırını göster
+  <yellow>/chome <gray>- Claim'ine ışınlan
+  <yellow>/claim sethome <gray>- Işınlanma noktasını ayarla
+  <yellow>/claim claim <gray>- Bulunduğun chunk'ı claim et
+  <yellow>/claim unclaim <gray>- Bulunduğun chunk'ı bırak
+  <yellow>/claim delete <gray>- Claim'i sil (onaylı)
+  <yellow>/claim give <oyuncu> [adet] <gray>- Claim bloğu ver (admin)
+  <yellow>/claim reload <gray>- Yapılandırmayı yenile (admin)
+
+# ---------- Ziyaretçi flag'leri ----------
+flags:
+  BUILD: "Blok Koyma"
+  BREAK: "Blok Kırma"
+  INTERACT: "Etkileşim (Kapı/Buton/Kol)"
+  CONTAINERS: "Sandık / Fırın Erişimi"
+  PVP: "PvP"
+  ANIMAL_DAMAGE: "Hayvanlara Zarar"
+  ITEM_PICKUP: "Eşya Alma"
+  ITEM_DROP: "Eşya Atma"
+  USE_ITEMS: "Eşya Kullanma (Kova, Çakmak…)"
+  ENTITY_INTERACT: "Canlı Etkileşimi (Köylü, Tabela…)"
+  ENTER: "Alana Giriş"
+
+# ---------- Geliştirmeler ----------
+upgrades:
+  max-chunks:
+    name: "Chunk Limiti"
+    description: "Claim edilebilecek maksimum chunk sayısı"
+  max-members:
+    name: "Üye Limiti"
+    description: "Eklenebilecek maksimum üye sayısı"
+  explosion-protection:
+    name: "Patlama Koruması"
+    description: "Creeper ve TNT patlamaları blokları kırmaz"
+  fire-protection:
+    name: "Yangın Koruması"
+    description: "Ateş yayılmaz, bloklar yanmaz"
+  mob-spawn-block:
+    name: "Canavar Engeli"
+    description: "Alan içinde düşman canavar doğmaz"
+
+# ---------- Üye izinleri ----------
+permissions:
+  BUILD: "Blok Koyma"
+  BREAK: "Blok Kırma"
+  INTERACT: "Etkileşim (Kapı/Buton)"
+  CONTAINERS: "Sandık / Fırın"
+  USE_ITEMS: "Eşya Kullanma (Kova, Çakmak…)"
+  ENTITIES: "Canlı Etkileşimi / Hayvan"
+  TELEPORT: "Claim'e Işınlanma"
+  CLAIM_CHUNKS: "Chunk Claim Etme"
+  UNCLAIM_CHUNKS: "Chunk Bırakma"
+  MANAGE_SETTINGS: "Ayarları Değiştirme"
+  MANAGE_MEMBERS: "Üye Yönetimi"
+  BUY_UPGRADES: "Geliştirme Satın Alma"
+  RENAME: "İsim Değiştirme"
+  SET_HOME: "Ev Noktası Ayarlama"
+
+# ---------- Menüler ----------
+gui:
+  common:
+    back: "<yellow>← Geri"
+    close: "<red>Kapat"
+    click-open: "<yellow>Tıkla → Aç"
+    no-permission: "<red>Yetkin yok"
+    click-turn-on: "<yellow>Tıkla → Aç"
+    click-turn-off: "<yellow>Tıkla → Kapat"
+    owner-only: "<red>Sadece sahip değiştirebilir"
+    online: "<green>Çevrimiçi"
+    offline: "<dark_gray>Çevrimdışı"
+  main:
+    title: "<dark_green><bold>{name}</bold>"
+    info-name: "<green><bold>{name}</bold>"
+    info-lore:
+      - "<gray>Sahip: <white>{owner}"
+      - "<gray>Chunk: <white>{chunks}<gray>/<white>{max_chunks}"
+      - "<gray>Üye: <white>{members}<gray>/<white>{max_members}"
+      - ""
+      - "<gray>Ekonomi: <white>{economy}"
+    settings-name: "<yellow><bold>Ayarlar</bold>"
+    settings-lore:
+      - "<gray>Ziyaretçilerin alanda neler"
+      - "<gray>yapabileceğini aç/kapa."
+      - ""
+    upgrades-name: "<aqua><bold>Geliştirmeler</bold>"
+    upgrades-lore:
+      - "<gray>Chunk limiti, üye limiti,"
+      - "<gray>patlama/yangın koruması ve daha fazlası."
+      - ""
+    members-name: "<light_purple><bold>Üyeler</bold>"
+    members-lore:
+      - "<gray>Üye: <white>{members}<gray>/<white>{max_members}"
+      - "<gray>Üye ekle / çıkar / izin ver."
+      - ""
+      - "<yellow>Tıkla → Aç"
+    chunks-name: "<gold><bold>Chunklar</bold>"
+    chunks-lore:
+      - "<gray>Chunk: <white>{chunks}<gray>/<white>{max_chunks}"
+      - "<gray>Haritadan chunk claim et veya bırak."
+      - ""
+      - "<yellow>Tıkla → Aç"
+    border-name: "<white><bold>Sınırı Göster</bold>"
+    border-lore:
+      - "<gray>Alanının sınırını animasyonlu"
+      - "<gray>dünya sınırı ile gösterir."
+      - ""
+      - "<yellow>Tıkla → Göster"
+    rename-name: "<white><bold>İsim Değiştir</bold>"
+    rename-lore:
+      - "<gray>Mevcut: <white>{name}"
+      - ""
+    rename-click: "<yellow>Tıkla → Sohbete yaz"
+    teleport-name: "<dark_aqua><bold>Claim'e Işınlan</bold>"
+    teleport-lore:
+      - "<gray>Ev noktası: <white>{home}"
+      - "<gray>Bekleme: <white>{warmup}s"
+      - ""
+    teleport-home-custom: "Özel"
+    teleport-home-block: "Yönetim bloğu"
+    teleport-click: "<yellow>Tıkla → Işınlan"
+    teleport-no-permission: "<red>Işınlanma yetkin yok"
+    teleport-sethome: "<yellow>Shift + Tıkla → Ev noktasını buraya ayarla"
+    protections-name: "<white><bold>Aktif Korumalar</bold>"
+    protections-lore:
+      - "<gray>Patlama: {explosion}"
+      - "<gray>Yangın: {fire}"
+      - "<gray>Canavar Engeli: {mob}"
+    delete-name: "<dark_red><bold>Claim'i Sil</bold>"
+    delete-lore:
+      - "<gray>Claim'i tamamen kaldırır."
+      - "<gray>İki aşamalı onay gerektirir."
+      - ""
+      - "<red>Tıkla → Onay ekranı"
+  settings:
+    title: "<dark_green><bold>Ayarlar</bold> <dark_gray>» <gray>Ziyaretçi İzinleri"
+    header-name: "<yellow><bold>Ziyaretçi İzinleri</bold>"
+    header-lore:
+      - "<gray>Bu ayarlar üye olmayan oyuncular"
+      - "<gray>için geçerlidir. Üyelerin izinleri"
+      - "<gray>üye menüsünden ayarlanır."
+    flag-name-on: "<green><bold>{flag}</bold>"
+    flag-name-off: "<red><bold>{flag}</bold>"
+    flag-lore:
+      - "<gray>Durum: {state}"
+      - ""
+  upgrades:
+    title: "<dark_green><bold>Geliştirmeler</bold>"
+    balance-name: "<gold><bold>Bakiye</bold>"
+    balance-lore:
+      - "<gray>Mevcut: <white>{balance}"
+      - "<gray>Sağlayıcı: <white>{economy}"
+    item-name: "<aqua><bold>{upgrade}</bold>"
+    status: "<gray>Durum: {state}"
+    level: "<gray>Seviye: <white>{level}<gray>/<white>{max}"
+    current-value: "<gray>Mevcut değer: <white>{value}"
+    next-value: "<gray>Sonraki değer: <white>{value}"
+    price: "<gray>Fiyat: <gold>{cost}"
+    max-level: "<green>✔ Maksimum seviye"
+    buy: "<yellow>Tıkla → Satın al"
+    insufficient: "<red>Yetersiz bakiye"
+  members:
+    title: "<dark_green><bold>Üyeler</bold> <dark_gray>» <gray>{members}/{max_members}"
+    owner-name: "<gold><bold>{player}</bold>"
+    owner-lore:
+      - "<gray>Sahip <dark_gray>(tüm izinler)"
+    member-name: "<light_purple><bold>{player}</bold>"
+    member-lore:
+      - "<gray>Durum: {status}"
+      - "<gray>İzin: <white>{perms}<gray>/<white>{max_perms}"
+    member-manage-lore:
+      - ""
+      - "<yellow>Tıkla → İzinleri düzenle"
+      - "<red>Shift + Tıkla → Üyelikten çıkar"
+    add-name: "<green><bold>Üye Ekle</bold>"
+    add-lore:
+      - "<gray>Üye: <white>{members}<gray>/<white>{max_members}"
+      - ""
+    add-click: "<yellow>Tıkla → Sohbete isim yaz"
+  permissions:
+    title: "<dark_green><bold>İzinler</bold> <dark_gray>» <gray>{player}"
+    header-name: "<light_purple><bold>{player}</bold>"
+    header-lore:
+      - "<gray>Bu üyenin claim içinde"
+      - "<gray>yapabileceklerini ayarla."
+    basic-header: "<white><bold>Temel İzinler</bold>"
+    management-header: "<gold><bold>Yönetim İzinleri</bold>"
+    management-header-lore:
+      - "<gray>Sadece sahip değiştirebilir."
+    perm-name-on: "<green><bold>{permission}</bold>"
+    perm-name-off: "<red><bold>{permission}</bold>"
+    perm-lore:
+      - "<gray>Durum: {state}"
+      - ""
+  chunks:
+    title: "<dark_green><bold>Chunklar</bold> <dark_gray>» <gray>{chunks}/{max_chunks}"
+    coord: "<gray>Chunk: <white>{x}, {z}"
+    origin: "<green><bold>Ana Chunk</bold>"
+    own: "<green><bold>Senin Chunk'ın</bold>"
+    refund: "<gray>İade: <gold>{refund}"
+    unclaim-click: "<red>Shift + Tıkla → Bırak"
+    other: "<red><bold>{name}</bold>"
+    other-owner: "<gray>Sahip: <white>{owner}"
+    claimable: "<yellow><bold>Claim Edilebilir</bold>"
+    price: "<gray>Fiyat: <gold>{cost}"
+    limit: "<gray>Limit: <white>{chunks}<gray>/<white>{max_chunks}"
+    limit-full: "<red>Chunk limiti dolu"
+    claim-click: "<yellow>Tıkla → Claim et"
+    empty: "<gray>Boş"
+    you-are-here: "<white>▶ Buradasın"
+    border-name: "<white><bold>Sınırı Göster</bold>"
+    border-lore:
+      - "<yellow>Tıkla → Göster"
+    info-name: "<gold><bold>Bilgi</bold>"
+    info-lore:
+      - "<gray>Chunk: <white>{chunks}<gray>/<white>{max_chunks}"
+      - "<gray>Sonraki chunk fiyatı: <gold>{cost}"
+      - "<gray>Bakiye: <white>{balance}"
+      - ""
+      - "<green>■ <gray>Senin  <red>■ <gray>Başkası"
+      - "<yellow>■ <gray>Claim edilebilir  <dark_gray>■ <gray>Boş"
+    refresh-name: "<white><bold>Haritayı Yenile</bold>"
+    refresh-lore:
+      - "<gray>Konumuna göre haritayı günceller."
+  delete:
+    title: "<dark_red><bold>Claim'i Sil?</bold>"
+    info-name: "<red><bold>{name}</bold> <gray>silinecek"
+    info-lore:
+      - "<gray>Chunk: <white>{chunks}"
+      - "<gray>Üye: <white>{members}"
+      - ""
+      - "<red>Bu işlem geri alınamaz!"
+      - "<gray>Tüm chunklar serbest kalır, geliştirmeler"
+      - "<gray>ve üyeler silinir. Para iadesi yapılmaz."
+    confirm-name: "<green><bold>Evet, silmek istiyorum</bold>"
+    confirm-lore:
+      - "<gray>Son adım: claim ismini"
+      - "<gray>sohbete birebir yazman istenecek."
+    cancel-name: "<red><bold>Vazgeç</bold>"
+    cancel-lore:
+      - "<gray>Ana menüye dön."

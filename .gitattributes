@@ -1,0 +1,9 @@
+# Linux runner'da gradlew'nin çalışması için LF şart
+gradlew text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+*.java text
+*.yml text
+*.kts text
+*.md text
+*.jar binary

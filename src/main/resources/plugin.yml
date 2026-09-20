@@ -1,0 +1,32 @@
+name: ChunkClaim
+version: '${version}'
+main: dev.alpay.chunkclaim.ChunkClaimPlugin
+api-version: '26.2'
+author: Alpay
+description: Chunk tabanlı claim sistemi - yönetim bloğu, hologram, GUI ve ekonomi desteği
+softdepend: [Vault]
+
+commands:
+  claim:
+    description: ChunkClaim ana komutu
+    usage: /claim [info|border|claim|unclaim|give|reload]
+    aliases: [chunkclaim, cc]
+  border:
+    description: Claim alanının sınırını gösterir
+    usage: /border
+    aliases: [sinir, alan, claimborder]
+  chome:
+    description: Claim'ine ışınlan
+    usage: /chome
+    aliases: [claimhome, chunkhome, cev]
+
+permissions:
+  chunkclaim.use:
+    description: Claim oluşturma ve yönetme
+    default: true
+  chunkclaim.admin:
+    description: Admin komutları ve tüm claimlere erişim
+    default: op
+  chunkclaim.bypass:
+    description: Koruma kurallarını atlar
+    default: op

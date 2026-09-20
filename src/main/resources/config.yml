@@ -1,0 +1,116 @@
+# ChunkClaim configuration / yapılandırması
+
+# Language file: plugins/ChunkClaim/lang/<code>.yml  (tr, en — or add your own)
+# Dil dosyası: plugins/ChunkClaim/lang/<kod>.yml
+language: tr
+
+# Claim management block / Yönetim bloğu
+claim-block:
+  material: LODESTONE
+  # Crafting recipe (name & lore are in the lang file)
+  recipe:
+    enabled: true
+    shape:
+      - "IDI"
+      - "DLD"
+      - "IDI"
+    ingredients:
+      I: IRON_INGOT
+      D: DIAMOND
+      L: LODESTONE
+
+# Limits / Limitler
+limits:
+  # Max claims per player (0 = unlimited)
+  max-claims-per-player: 1
+  # Worlds where claiming is allowed (empty = all)
+  allowed-worlds: []
+  # Minimum chunk distance to other claims when placing the block (0 = off)
+  min-distance-chunks: 0
+
+# Economy: VAULT, DIAMOND or AUTO (Vault if present, otherwise diamonds)
+# Two price sets: "cost" = Vault currency, "diamond" = diamond count.
+economy:
+  type: AUTO
+  diamond:
+    # Count diamond blocks as 9 diamonds
+    accept-blocks: true
+  # Price for claiming a new chunk: price = base + (currentChunks - 1) * per-chunk
+  chunk-price:
+    vault:
+      base: 100.0
+      per-chunk: 50.0
+    diamond:
+      base: 2
+      per-chunk: 1
+  # Refund ratio when unclaiming (0.0 - 1.0). Refund goes to the OWNER only.
+  unclaim-refund: 0.5
+
+# Upgrades. Each level: cost (Vault), diamond (diamonds), value.
+# Level 0 = base. Levels are bought in order.
+upgrades:
+  max-chunks:
+    base: 4
+    levels:
+      - { cost: 500, diamond: 8, value: 9 }
+      - { cost: 1500, diamond: 16, value: 16 }
+      - { cost: 4000, diamond: 32, value: 25 }
+      - { cost: 10000, diamond: 64, value: 36 }
+  max-members:
+    base: 2
+    levels:
+      - { cost: 300, diamond: 4, value: 5 }
+      - { cost: 1000, diamond: 10, value: 10 }
+      - { cost: 3000, diamond: 24, value: 20 }
+  explosion-protection:
+    base: 0
+    levels:
+      - { cost: 2000, diamond: 20, value: 1 }
+  fire-protection:
+    base: 0
+    levels:
+      - { cost: 1500, diamond: 12, value: 1 }
+  mob-spawn-block:
+    base: 0
+    levels:
+      - { cost: 5000, diamond: 40, value: 1 }
+
+# Hologram (lines are in the lang file)
+hologram:
+  enabled: true
+  y-offset: 1.6
+  update-interval-ticks: 100
+
+# Client-side world border preview
+border:
+  expand-ms: 1500
+  hold-ms: 4000
+  shrink-ms: 1000
+  show-on-enter: false
+  # The client-side border is a real wall; when the player gets this close to an edge
+  # the preview is removed so it never blocks movement (0 = off)
+  auto-hide-distance: 2.0
+
+# Claim creation
+creation:
+  # Ask for a name in chat after placing the block
+  ask-name: true
+  max-name-length: 24
+  # Allowed characters (Java regex). Default: letters, digits, space, _ ' - . ! ?
+  name-pattern: "^[\\p{L}\\p{N} _'\\-.!?]+$"
+
+# Teleport to claim (/chome)
+teleport:
+  warmup-seconds: 3
+  cancel-on-move: true
+  cancel-on-damage: true
+  cooldown-seconds: 30
+  cost: 0
+  diamond-cost: 0
+
+# Enter/leave action bar messages
+titles:
+  enabled: true
+
+# Chat prompts (name, member add, delete confirm) expire after this many seconds
+chat-prompt-timeout-seconds: 60

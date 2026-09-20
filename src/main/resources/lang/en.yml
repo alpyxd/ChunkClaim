@@ -1,0 +1,360 @@
+# ChunkClaim — English language file (MiniMessage format)
+# Missing keys fall back to the bundled default.
+
+prefix: "<gradient:#55ff55:#00aa00><bold>Claim</bold></gradient> <dark_gray>» <gray>"
+
+# ---------- General ----------
+no-permission: "<red>You don't have permission to do that."
+player-only: "<red>This command can only be used by players."
+reloaded: "<green>Configuration reloaded."
+player-not-found: "<red>Player not found: <white>{player}"
+state-on: "<green>ON"
+state-off: "<red>OFF"
+
+# ---------- Claim block (item) ----------
+claim-block:
+  name: "<gradient:#55ff55:#00aa00><bold>Claim Control Block</bold></gradient>"
+  lore:
+    - "<gray>Place this block to claim"
+    - "<gray>the chunk you're standing in."
+    - ""
+    - "<yellow>Right-click <gray>to open the management menu."
+
+# ---------- Hologram ----------
+hologram:
+  lines:
+    - "<gradient:#55ff55:#00aa00><bold>{name}</bold></gradient>"
+    - "<gray>Owner: <white>{owner}"
+    - "<gray>Chunks: <white>{chunks}<gray>/<white>{max_chunks}"
+    - "<gray>Members: <white>{members}<gray>/<white>{max_members}"
+    - "<yellow>Right-click: Manage"
+
+# ---------- Enter / leave (action bar) ----------
+titles:
+  enter: "<green>▶ <gray>Entering <white>{name}"
+  leave: "<red>◀ <gray>Leaving <white>{name}"
+
+# ---------- Creation / deletion ----------
+creation-default-name: "{player}'s Claim"
+claim-created: "<green>Claim created! <gray>Right-click the block to manage it."
+creation-name-prompt: "<yellow>Give your claim a name! <gray>Type it in chat (max <white>{max}<gray> characters). Type <white>cancel<gray> to keep the default."
+creation-name-default: "<gray>Claim name: <white>{name} <dark_gray>(you can change it in the menu)"
+claim-removed: "<yellow>Claim removed. <gray>All chunks have been released."
+claim-block-given: "<green>Gave {amount}x claim block to <white>{player}"
+claim-block-received: "<green>You received {amount}x claim block."
+chunk-already-claimed: "<red>This chunk already belongs to <white>{name}<red>."
+world-not-allowed: "<red>Claiming is not allowed in this world."
+max-claims-reached: "<red>You've reached the maximum number of claims (<white>{max}<red>)."
+too-close: "<red>Too close to another claim. Keep at least <white>{distance}<red> chunks away."
+cannot-break-claim-block: "<red>The claim control block cannot be broken."
+claim-block-use-menu: "<yellow>The control block can't be broken. <gray>To delete the claim use <white>Delete Claim<gray> in the menu or <white>/claim delete<gray>."
+delete-confirm-prompt: "<red><bold>FINAL STEP:</bold> <gray>Type the claim name exactly to confirm deletion: <white>{name}<gray>. Type <white>cancel<gray> to abort."
+delete-name-mismatch: "<red>Name didn't match, deletion cancelled. <gray>(Expected: <white>{name}<gray>)"
+delete-cancelled: "<gray>Deletion cancelled."
+
+# ---------- Chunks ----------
+chunk-claimed: "<green>Chunk claimed! <gray>(<white>{chunks}<gray>/<white>{max}<gray>) Paid: <white>{cost}"
+chunk-unclaimed: "<yellow>Chunk released. <gray>Refund: <white>{refund}"
+chunk-not-adjacent: "<red>You can only claim chunks adjacent to your area / releasing this would split the area."
+chunk-limit-reached: "<red>Chunk limit reached (<white>{max}<red>). <gray>Increase it in the upgrades menu."
+chunk-not-yours: "<red>This chunk doesn't belong to your claim."
+chunk-is-origin: "<red>The origin chunk (with the control block) can't be released."
+chunk-different-world: "<red>Your claim is in another world."
+not-enough-money: "<red>Insufficient funds. <gray>Required: <white>{cost}<gray>, Balance: <white>{balance}"
+
+# ---------- Members ----------
+member-added: "<green>{player} <gray>was added as a member."
+member-removed: "<yellow>{player} <gray>was removed from members."
+member-already: "<red>{player} <gray>is already a member."
+member-limit-reached: "<red>Member limit reached (<white>{max}<red>)."
+member-cannot-add-self: "<red>You can't add yourself as a member."
+member-add-prompt: "<yellow>Type the name of the player to add in chat. <gray>Type <white>cancel<gray> to abort."
+member-add-cancelled: "<gray>Member add cancelled."
+member-cannot-remove-manager: "<red>Only the owner can manage a member with management permissions."
+no-claim-permission: "<red>You don't have the <white>{permission}<red> permission in this claim."
+permission-toggled: "<gray>{player} <dark_gray>» <gray>{permission}: {state}"
+permission-owner-only: "<red>Only the claim owner can grant management permissions."
+
+# ---------- Settings / upgrades ----------
+flag-toggled: "<gray>{flag}: {state}"
+upgrade-purchased: "<green>{upgrade} <gray>upgraded! <gray>New level: <white>{level}"
+upgrade-max-level: "<red>This upgrade is already at max level."
+
+# ---------- Protection ----------
+protection-build: "<red>You can't build here."
+protection-break: "<red>You can't break blocks here."
+protection-interact: "<red>You can't interact with that here."
+protection-container: "<red>You can't access this container."
+protection-pvp: "<red>PvP is disabled in this area."
+protection-animal: "<red>You can't harm animals in this area."
+protection-enter: "<red>You're not allowed to enter this area."
+protection-drop: "<red>You can't drop items in this area."
+protection-use: "<red>You can't use that item here."
+
+# ---------- Teleport ----------
+teleport-warmup: "<gray>Teleporting to <white>{name}<gray>… don't move for <white>{seconds}<gray> seconds!"
+teleport-countdown: "<aqua>Teleport: <white>{seconds}s"
+teleport-cancelled: "<red>Teleport cancelled."
+teleport-done: "<green>Teleported to <white>{name}<green>."
+teleport-failed: "<red>Teleport failed."
+teleport-cooldown: "<red>Wait <white>{seconds}<red> seconds before teleporting again."
+teleport-already-pending: "<red>A teleport is already pending."
+teleport-no-home: "<red>This claim has no teleport point."
+home-set: "<green>Home point set to your current location."
+home-outside-claim: "<red>The home point must be inside your own claim."
+
+# ---------- Commands ----------
+no-claim: "<red>You don't have a claim. <gray>Place a claim block to create one."
+not-in-claim: "<gray>This is wilderness, it belongs to no one."
+claim-info: "<gray>Claim: <white>{name} <dark_gray>| <gray>Owner: <white>{owner} <dark_gray>| <gray>Chunks: <white>{chunks}"
+not-manage-permission: "<red>Only the claim owner can do that."
+border-shown: "<gray>Showing the border of <white>{name}<gray>…"
+name-prompt: "<yellow>Type the new claim name in chat. <gray>Type <white>cancel<gray> to abort."
+name-changed: "<green>Claim renamed to: <white>{name}"
+name-too-long: "<red>The name must be 1-<white>{max}<red> characters."
+name-invalid: "<red>The name contains disallowed characters. <gray>Use letters, digits, spaces and _ ' - . ! ?"
+prompt-expired: "<gray>Chat prompt timed out."
+help: |-
+  <gradient:#55ff55:#00aa00><bold>ChunkClaim Commands</bold></gradient>
+  <yellow>/claim <gray>- Open the management menu
+  <yellow>/claim info <gray>- Info about the chunk you're in
+  <yellow>/border <gray>- Show the claim border
+  <yellow>/chome <gray>- Teleport to your claim
+  <yellow>/claim sethome <gray>- Set the teleport point
+  <yellow>/claim claim <gray>- Claim the chunk you're in
+  <yellow>/claim unclaim <gray>- Release the chunk you're in
+  <yellow>/claim delete <gray>- Delete the claim (with confirmation)
+  <yellow>/claim give <player> [amount] <gray>- Give a claim block (admin)
+  <yellow>/claim reload <gray>- Reload configuration (admin)
+
+# ---------- Visitor flags ----------
+flags:
+  BUILD: "Place Blocks"
+  BREAK: "Break Blocks"
+  INTERACT: "Interact (Doors/Buttons/Levers)"
+  CONTAINERS: "Container Access"
+  PVP: "PvP"
+  ANIMAL_DAMAGE: "Harm Animals"
+  ITEM_PICKUP: "Pick Up Items"
+  ITEM_DROP: "Drop Items"
+  USE_ITEMS: "Use Items (Buckets, Flint & Steel…)"
+  ENTITY_INTERACT: "Entity Interaction (Villagers, Frames…)"
+  ENTER: "Enter Area"
+
+# ---------- Upgrades ----------
+upgrades:
+  max-chunks:
+    name: "Chunk Limit"
+    description: "Maximum number of chunks you can claim"
+  max-members:
+    name: "Member Limit"
+    description: "Maximum number of members"
+  explosion-protection:
+    name: "Explosion Protection"
+    description: "Creeper and TNT explosions don't break blocks"
+  fire-protection:
+    name: "Fire Protection"
+    description: "Fire doesn't spread, blocks don't burn"
+  mob-spawn-block:
+    name: "Mob Spawn Block"
+    description: "No hostile mobs spawn inside the area"
+
+# ---------- Member permissions ----------
+permissions:
+  BUILD: "Place Blocks"
+  BREAK: "Break Blocks"
+  INTERACT: "Interact (Doors/Buttons)"
+  CONTAINERS: "Containers"
+  USE_ITEMS: "Use Items (Buckets, Flint & Steel…)"
+  ENTITIES: "Entity Interaction / Animals"
+  TELEPORT: "Teleport to Claim"
+  CLAIM_CHUNKS: "Claim Chunks"
+  UNCLAIM_CHUNKS: "Release Chunks"
+  MANAGE_SETTINGS: "Manage Settings"
+  MANAGE_MEMBERS: "Manage Members"
+  BUY_UPGRADES: "Buy Upgrades"
+  RENAME: "Rename Claim"
+  SET_HOME: "Set Home Point"
+
+# ---------- Menus ----------
+gui:
+  common:
+    back: "<yellow>← Back"
+    close: "<red>Close"
+    click-open: "<yellow>Click → Open"
+    no-permission: "<red>No permission"
+    click-turn-on: "<yellow>Click → Turn on"
+    click-turn-off: "<yellow>Click → Turn off"
+    owner-only: "<red>Only the owner can change this"
+    online: "<green>Online"
+    offline: "<dark_gray>Offline"
+  main:
+    title: "<dark_green><bold>{name}</bold>"
+    info-name: "<green><bold>{name}</bold>"
+    info-lore:
+      - "<gray>Owner: <white>{owner}"
+      - "<gray>Chunks: <white>{chunks}<gray>/<white>{max_chunks}"
+      - "<gray>Members: <white>{members}<gray>/<white>{max_members}"
+      - ""
+      - "<gray>Economy: <white>{economy}"
+    settings-name: "<yellow><bold>Settings</bold>"
+    settings-lore:
+      - "<gray>Toggle what visitors can"
+      - "<gray>do inside your area."
+      - ""
+    upgrades-name: "<aqua><bold>Upgrades</bold>"
+    upgrades-lore:
+      - "<gray>Chunk limit, member limit,"
+      - "<gray>explosion/fire protection and more."
+      - ""
+    members-name: "<light_purple><bold>Members</bold>"
+    members-lore:
+      - "<gray>Members: <white>{members}<gray>/<white>{max_members}"
+      - "<gray>Add / remove / grant permissions."
+      - ""
+      - "<yellow>Click → Open"
+    chunks-name: "<gold><bold>Chunks</bold>"
+    chunks-lore:
+      - "<gray>Chunks: <white>{chunks}<gray>/<white>{max_chunks}"
+      - "<gray>Claim or release chunks from the map."
+      - ""
+      - "<yellow>Click → Open"
+    border-name: "<white><bold>Show Border</bold>"
+    border-lore:
+      - "<gray>Shows your area's border with"
+      - "<gray>an animated world border."
+      - ""
+      - "<yellow>Click → Show"
+    rename-name: "<white><bold>Rename</bold>"
+    rename-lore:
+      - "<gray>Current: <white>{name}"
+      - ""
+    rename-click: "<yellow>Click → Type in chat"
+    teleport-name: "<dark_aqua><bold>Teleport to Claim</bold>"
+    teleport-lore:
+      - "<gray>Home point: <white>{home}"
+      - "<gray>Warmup: <white>{warmup}s"
+      - ""
+    teleport-home-custom: "Custom"
+    teleport-home-block: "Control block"
+    teleport-click: "<yellow>Click → Teleport"
+    teleport-no-permission: "<red>No teleport permission"
+    teleport-sethome: "<yellow>Shift + Click → Set home point here"
+    protections-name: "<white><bold>Active Protections</bold>"
+    protections-lore:
+      - "<gray>Explosions: {explosion}"
+      - "<gray>Fire: {fire}"
+      - "<gray>Mob Spawn Block: {mob}"
+    delete-name: "<dark_red><bold>Delete Claim</bold>"
+    delete-lore:
+      - "<gray>Removes the claim entirely."
+      - "<gray>Requires two-step confirmation."
+      - ""
+      - "<red>Click → Confirmation screen"
+  settings:
+    title: "<dark_green><bold>Settings</bold> <dark_gray>» <gray>Visitor Permissions"
+    header-name: "<yellow><bold>Visitor Permissions</bold>"
+    header-lore:
+      - "<gray>These settings apply to non-members."
+      - "<gray>Member permissions are configured"
+      - "<gray>in the members menu."
+    flag-name-on: "<green><bold>{flag}</bold>"
+    flag-name-off: "<red><bold>{flag}</bold>"
+    flag-lore:
+      - "<gray>Status: {state}"
+      - ""
+  upgrades:
+    title: "<dark_green><bold>Upgrades</bold>"
+    balance-name: "<gold><bold>Balance</bold>"
+    balance-lore:
+      - "<gray>Current: <white>{balance}"
+      - "<gray>Provider: <white>{economy}"
+    item-name: "<aqua><bold>{upgrade}</bold>"
+    status: "<gray>Status: {state}"
+    level: "<gray>Level: <white>{level}<gray>/<white>{max}"
+    current-value: "<gray>Current value: <white>{value}"
+    next-value: "<gray>Next value: <white>{value}"
+    price: "<gray>Price: <gold>{cost}"
+    max-level: "<green>✔ Max level"
+    buy: "<yellow>Click → Buy"
+    insufficient: "<red>Insufficient balance"
+  members:
+    title: "<dark_green><bold>Members</bold> <dark_gray>» <gray>{members}/{max_members}"
+    owner-name: "<gold><bold>{player}</bold>"
+    owner-lore:
+      - "<gray>Owner <dark_gray>(all permissions)"
+    member-name: "<light_purple><bold>{player}</bold>"
+    member-lore:
+      - "<gray>Status: {status}"
+      - "<gray>Permissions: <white>{perms}<gray>/<white>{max_perms}"
+    member-manage-lore:
+      - ""
+      - "<yellow>Click → Edit permissions"
+      - "<red>Shift + Click → Remove member"
+    add-name: "<green><bold>Add Member</bold>"
+    add-lore:
+      - "<gray>Members: <white>{members}<gray>/<white>{max_members}"
+      - ""
+    add-click: "<yellow>Click → Type a name in chat"
+  permissions:
+    title: "<dark_green><bold>Permissions</bold> <dark_gray>» <gray>{player}"
+    header-name: "<light_purple><bold>{player}</bold>"
+    header-lore:
+      - "<gray>Configure what this member"
+      - "<gray>can do inside the claim."
+    basic-header: "<white><bold>Basic Permissions</bold>"
+    management-header: "<gold><bold>Management Permissions</bold>"
+    management-header-lore:
+      - "<gray>Only the owner can change these."
+    perm-name-on: "<green><bold>{permission}</bold>"
+    perm-name-off: "<red><bold>{permission}</bold>"
+    perm-lore:
+      - "<gray>Status: {state}"
+      - ""
+  chunks:
+    title: "<dark_green><bold>Chunks</bold> <dark_gray>» <gray>{chunks}/{max_chunks}"
+    coord: "<gray>Chunk: <white>{x}, {z}"
+    origin: "<green><bold>Origin Chunk</bold>"
+    own: "<green><bold>Your Chunk</bold>"
+    refund: "<gray>Refund: <gold>{refund}"
+    unclaim-click: "<red>Shift + Click → Release"
+    other: "<red><bold>{name}</bold>"
+    other-owner: "<gray>Owner: <white>{owner}"
+    claimable: "<yellow><bold>Claimable</bold>"
+    price: "<gray>Price: <gold>{cost}"
+    limit: "<gray>Limit: <white>{chunks}<gray>/<white>{max_chunks}"
+    limit-full: "<red>Chunk limit reached"
+    claim-click: "<yellow>Click → Claim"
+    empty: "<gray>Empty"
+    you-are-here: "<white>▶ You are here"
+    border-name: "<white><bold>Show Border</bold>"
+    border-lore:
+      - "<yellow>Click → Show"
+    info-name: "<gold><bold>Info</bold>"
+    info-lore:
+      - "<gray>Chunks: <white>{chunks}<gray>/<white>{max_chunks}"
+      - "<gray>Next chunk price: <gold>{cost}"
+      - "<gray>Balance: <white>{balance}"
+      - ""
+      - "<green>■ <gray>Yours  <red>■ <gray>Someone else's"
+      - "<yellow>■ <gray>Claimable  <dark_gray>■ <gray>Empty"
+    refresh-name: "<white><bold>Refresh Map</bold>"
+    refresh-lore:
+      - "<gray>Updates the map around your position."
+  delete:
+    title: "<dark_red><bold>Delete Claim?</bold>"
+    info-name: "<red><bold>{name}</bold> <gray>will be deleted"
+    info-lore:
+      - "<gray>Chunks: <white>{chunks}"
+      - "<gray>Members: <white>{members}"
+      - ""
+      - "<red>This cannot be undone!"
+      - "<gray>All chunks are released, upgrades"
+      - "<gray>and members are removed. No refunds."
+    confirm-name: "<green><bold>Yes, delete it</bold>"
+    confirm-lore:
+      - "<gray>Final step: you'll be asked to"
+      - "<gray>type the claim name in chat."
+    cancel-name: "<red><bold>Cancel</bold>"
+    cancel-lore:
+      - "<gray>Back to the main menu."
