@@ -79,6 +79,17 @@ public abstract class Menu implements InventoryHolder {
         }
     }
 
+    /** Dış çerçeveyi (ilk/son satır ve kenar sütunlar) boş slotlarda doldurur. */
+    protected void fillBorder(Material material) {
+        ItemStack filler = ItemBuilder.of(material).name(" ").build();
+        int size = inventory.getSize();
+        for (int i = 0; i < size; i++) {
+            int row = i / 9, col = i % 9;
+            boolean edge = row == 0 || row == size / 9 - 1 || col == 0 || col == 8;
+            if (edge && inventory.getItem(i) == null) inventory.setItem(i, filler);
+        }
+    }
+
     protected void backButton(int slot, Runnable back) {
         set(slot, ItemBuilder.of(Material.ARROW).name(msg().raw("gui.common.back")).build(), click -> back.run());
     }

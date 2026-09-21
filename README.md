@@ -20,36 +20,57 @@
 
 ### ✨ Features
 
-- **Control block** — place the *Claim Control Block* (Lodestone by default, craftable or `/claim give`) and the chunk you're standing in becomes yours. Right-click it to manage everything. The block **cannot be broken**; deleting a claim requires a two-step confirmation.
-- **Hologram** — a `TextDisplay` above the block shows the claim name, owner, chunk and member counts (fully customizable lines).
-- **GUI-driven management** — main menu with sub-menus:
-  - **Settings** — 11 visitor toggles: place, break, interact (doors/buttons), containers, PvP, harm animals, item pickup/drop, use items (buckets, flint & steel…), entity interaction, enter area.
-  - **Upgrades** — chunk limit, member limit, explosion protection, fire protection, mob-spawn block. Levels and prices are configurable.
-  - **Members** — add by typing a name in chat, remove with shift-click, and click a head to open the **per-member permission editor** (15 permissions, basic + management).
-  - **Chunks** — a live 9×5 chunk map: yellow = claimable (click to buy), green = yours (shift-click to release), red = someone else's.
-  - **Protections** — toggle purchased protections (explosion / fire / mob spawn) on or off without losing them.
-  - **Teleport / Set home**, **Rename**, **Show border**, **Delete** (owner only).
-- **Animated border preview** — for square claims a client-side world border grows smoothly from the centre, holds, then shrinks away (auto-hides when you approach an edge so it never blocks movement). For any other shape (L, T, strips…) the *exact* outline is drawn with particles that spread out from the origin chunk. `/border`.
-- **Teleport** — `/chome` with warmup countdown, cancel-on-move/damage, cooldown and optional cost. Home point defaults to the control block, or set anywhere inside the claim.
-- **Economy** — `AUTO` (Vault if present, else diamonds), `VAULT` or `DIAMOND`. Diamond mode counts diamond blocks as 9 and gives change. Separate price sets for both.
-- **Protection** — blocks, containers (incl. the double-chest-across-border exploit), interactions, PvP, animals, item frames / armor stands / vehicles, explosions, fire (incl. flaming arrows), pistons and liquids crossing the border, dispensers firing into claims, enderman/wither/ravager griefing, no-enter zones. Owner and members are exempt according to their permissions.
-- **Localization** — `language: tr` / `en`. *Every* string, including GUI text, hologram lines and item names, lives in `lang/<code>.yml`. Missing keys fall back to the bundled defaults, so adding a language is copy → translate.
-- **Safe by design** — chat-prompt timeouts, MiniMessage-injection-safe player input, refunds only to the owner, two-phase block placement (plays nicely with WorldGuard & co.).
+**Claiming**
+- Place the **Claim Control Block** (Lodestone by default — craftable or `/claim give`) and the chunk you're standing in is yours. Name it right away in chat.
+- Grow by claiming **adjacent chunks** from the live chunk map; release them again for a partial refund. The area can never be split into islands.
+- The block **cannot be broken** by anyone. Deleting a claim takes a confirmation menu **and** typing the claim name in chat — and refunds upgrades + chunks.
+- Move the control block anywhere inside its origin chunk.
+
+**Management GUI** (right-click the block or `/claim`)
+
+| Row | Items |
+|---|---|
+| Info | Claim name, owner, chunk / member counts, active economy |
+| Management | **Settings** (visitor toggles) · **Protections** (toggle purchased protections) · **Upgrades** · **Members** |
+| Area | **Chunks** (9×5 live map) · **Show border** · **Teleport** (shift-click: set home) |
+| Owner | **Rename** · **Move block** · **Delete** |
+
+- **Settings** — 11 visitor toggles: place, break, interact (doors/buttons), containers, PvP, harm animals, item pickup/drop, use items (buckets, flint & steel…), entity interaction, enter area.
+- **Protections** — explosion / fire / mob-spawn protection can be turned on or off once purchased, without losing the upgrade.
+- **Upgrades** — chunk limit, member limit and the three protections. Levels, values and prices are fully configurable.
+- **Members** — add by typing a name in chat, shift-click to remove, click a head to open the **per-member permission editor** (15 permissions, basic + management).
+- **Chunks** — yellow = claimable (click to buy), green = yours (shift-click to release), red = someone else's, with prices and refunds shown.
+
+**Hologram** — a `TextDisplay` above the block with claim name, owner, chunk and member counts. Lines are customizable per language.
+
+**Animated border preview** (`/border`)
+- Square claims: a client-side world border grows smoothly from the centre, holds, then shrinks away. It auto-hides when you walk up to an edge, so it never blocks movement.
+- Any other shape (L, T, strips…): the **exact outline** is drawn with particles that spread outward from the origin chunk.
+
+**Teleport** (`/chome`) — warmup countdown, cancel on move / damage, cooldown, optional cost. Home point defaults to the control block; set it anywhere inside the claim.
+
+**Economy** — `AUTO` (Vault if present, else diamonds), `VAULT` or `DIAMOND`. Diamond mode counts diamond blocks as 9 and gives change. Every price has a Vault value and a diamond value.
+
+**Protection** — blocks, containers (incl. the double-chest-across-border trick), interactions, PvP, animals, item frames / armor stands / vehicles, explosions, fire (incl. flaming arrows), pistons and liquids crossing the border, dispensers firing into claims, enderman / wither / ravager griefing, no-enter zones. Owner and members are exempt according to their permissions.
+
+**Localization** — `language: en` / `tr`. *Every* string (messages, GUI, hologram, item names, even command aliases) lives in `lang/<code>.yml`; missing keys fall back to the bundled English file. A new language is copy → translate.
+
+**Safe by design** — chat-prompt timeouts, MiniMessage-injection-safe input, refunds go to the owner only, two-phase block placement (plays nicely with WorldGuard & co.), no privilege escalation between members.
 
 ### 📦 Installation
 
 1. Requires **Paper or Purpur 26.2** and **Java 25**.
 2. Download the latest jar from [Releases](https://github.com/alpyxd/ChunkClaim/releases) and drop it into `plugins/`.
 3. *(Optional)* Install [Vault](https://www.spigotmc.org/resources/vault.34315/) + an economy plugin for money-based pricing. Without Vault, diamonds are used automatically.
-4. Start the server, then edit `plugins/ChunkClaim/config.yml` and `lang/*.yml` to taste. `/claim reload` applies changes.
+4. Start the server, then edit `plugins/ChunkClaim/config.yml` and `lang/*.yml`. `/claim reload` applies everything except command aliases (those need a restart).
 
 ### ⌨️ Commands
 
 | Command | Description | Permission |
 |---|---|---|
-| `/claim` | Open the management menu (own claim, or the claim you're in as a member) | `chunkclaim.use` |
+| `/claim` | Open the management menu (your claim, or the claim you're in as a member) | `chunkclaim.use` |
 | `/claim info` | Who owns the chunk you're standing in | `chunkclaim.use` |
-| `/border` (`/claim border`) | Animated border preview of the claim you're in / your claim | `chunkclaim.use` |
+| `/border` (`/claim border`) | Animated border preview | `chunkclaim.use` |
 | `/chome` (`/claim home`) | Teleport to your claim | `chunkclaim.use` |
 | `/claim sethome` | Set the teleport point to your position | `chunkclaim.use` |
 | `/claim claim` / `unclaim` | Claim / release the chunk you're standing in | `chunkclaim.use` |
@@ -57,6 +78,8 @@
 | `/claim delete` | Delete the claim (confirmation menu + type the name) | `chunkclaim.use` |
 | `/claim give <player> [amount]` | Give claim control blocks | `chunkclaim.admin` |
 | `/claim reload` | Reload config & language files | `chunkclaim.admin` |
+
+Extra aliases per language (e.g. `/sinir`, `/alan`, `/cev` in Turkish) are defined under `commands:` in the language file.
 
 **Permissions:** `chunkclaim.use` (default: everyone), `chunkclaim.admin` (op — full access to every claim), `chunkclaim.bypass` (op — ignores all protection).
 
@@ -66,32 +89,45 @@
 |---|---|
 | Place blocks · Break blocks · Interact · Containers · Use items · Entities / animals · Teleport | Claim chunks · Release chunks · Manage settings · Manage protections · Manage members · Buy upgrades · Rename · Set home |
 
-A member with *Manage members* can add members and edit others' basic permissions, but cannot touch other managers or grant management permissions — no privilege escalation.
+A member with *Manage members* can add members and edit others' basic permissions, but cannot touch other managers or grant management permissions.
 
 ### ⚙️ Configuration highlights
 
 ```yaml
 language: en                      # en | tr
+
 economy:
   type: AUTO                      # AUTO | VAULT | DIAMOND
   chunk-price:
     vault:   { base: 100, per-chunk: 50 }
     diamond: { base: 2,   per-chunk: 1 }
-  unclaim-refund: 0.5             # owner only
-  delete-refund: 0.5              # upgrades + chunks, owner only
+  unclaim-refund: 0.5             # releasing a chunk (owner only)
+  delete-refund: 0.5              # deleting the claim: upgrades + chunks (owner only)
+
 upgrades:
   max-chunks:
     base: 4
     levels:
       - { cost: 500, diamond: 8, value: 9 }
       # ...
-border:  { mode: AUTO, expand-ms: 1500, hold-ms: 4000, shrink-ms: 1000, auto-hide-distance: 2.0 }
-teleport: { warmup-seconds: 3, cooldown-seconds: 30, cancel-on-move: true }
+  explosion-protection:           # toggle-type upgrades: base 1 = always on
+    base: 0
+    levels: [ { cost: 2000, diamond: 20, value: 1 } ]
+
+border:
+  mode: AUTO                      # AUTO | WORLD_BORDER | PARTICLES
+  particle-color: "#55FF55"
+  expand-ms: 1500
+  hold-ms: 4000
+  shrink-ms: 1000
+  auto-hide-distance: 2.0
+
+teleport: { warmup-seconds: 3, cooldown-seconds: 30, cancel-on-move: true, cost: 0 }
+
+creation: { ask-name: true, max-name-length: 24 }
 ```
 
 Claims are stored as `plugins/ChunkClaim/claims/<uuid>.yml`.
-
-> **Note:** explosion and fire protection are *upgrades* (off by default). To make them always-on, set `base: 1` and clear the `levels` list for that upgrade.
 
 ### 🔨 Building from source
 
@@ -101,7 +137,7 @@ cd ChunkClaim
 ./gradlew build          # Windows: .\gradlew.bat build
 ```
 
-The jar lands in `build/libs/`. Gradle wrapper is included; only a JDK 25 is needed.
+The jar lands in `build/libs/`. The Gradle wrapper is included; only a JDK 25 is needed.
 
 ### 🤝 Contributing
 
@@ -113,27 +149,47 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 
 ### ✨ Özellikler
 
-- **Yönetim bloğu** — *Claim Yönetim Bloğu*'nu (varsayılan Lodestone; tarif veya `/claim give`) yerleştirdiğin an bulunduğun chunk senin olur. Sağ tık ile her şeyi yönetirsin. Blok **kırılamaz**; claim silmek iki aşamalı onay ister.
-- **Hologram** — bloğun üstünde isim, sahip, chunk ve üye sayısı (satırlar özelleştirilebilir).
-- **GUI ile yönetim** — ana menü ve alt menüler:
-  - **Ayarlar** — 11 ziyaretçi aç/kapa: blok koyma/kırma, etkileşim, sandık, PvP, hayvan, eşya alma/atma, eşya kullanma, canlı etkileşimi, alana giriş.
-  - **Geliştirmeler** — chunk limiti, üye limiti, patlama/yangın koruması, canavar engeli. Seviyeler ve fiyatlar config'de.
-  - **Üyeler** — sohbetten isimle ekle, shift+tık ile çıkar, kafaya tıklayınca **üye başına izin editörü** (15 izin: temel + yönetim).
-  - **Chunklar** — canlı 9×5 chunk haritası: sarı = alınabilir (tıkla), yeşil = senin (shift+tık bırak), kırmızı = başkasının.
-  - **Korumalar** — satın alınan korumaları (patlama / yangın / canavar) kaybetmeden aç/kapa.
-  - **Işınlan / Ev ayarla**, **İsim değiştir**, **Sınırı göster**, **Sil** (sadece sahip).
-- **Animasyonlu sınır önizlemesi** — kare claim'lerde istemci tarafı dünya sınırı merkezden yumuşakça büyür, bekler, küçülerek kaybolur (kenara yaklaşınca otomatik kapanır, hareketi engellemez). Kare olmayan şekillerde (L, T, şerit…) claim'in *gerçek* çevresi, ana chunk'tan dışa yayılan partiküllerle çizilir. `/border`.
-- **Işınlanma** — `/chome`: geri sayım, hareket/hasar ile iptal, cooldown, isteğe bağlı ücret. Ev noktası varsayılan blok üstü, claim içinde istediğin yere ayarlanabilir.
-- **Ekonomi** — `AUTO` (Vault varsa Vault, yoksa elmas), `VAULT` veya `DIAMOND`. Elmas modu elmas bloğunu 9 sayar, para üstü verir. İki ayrı fiyat seti.
-- **Koruma** — blok, sandık (sınır ötesi çift sandık açığı dahil), etkileşim, PvP, hayvan, tablo/zırh askısı/araç, patlama, yangın (alev oku dahil), sınırı geçen piston ve sıvı, içeri püskürten dispenser, enderman/wither/ravager, giriş yasağı.
-- **Dil desteği** — `language: tr` / `en`. GUI dahil *tüm* metinler `lang/<kod>.yml`'de; eksik anahtarlar jar'daki varsayılandan tamamlanır.
+**Claim alma**
+- **Claim Yönetim Bloğu**'nu (varsayılan Lodestone — tarif veya `/claim give`) yerleştir, bulunduğun chunk senin olsun. İsmini hemen sohbetten ver.
+- Canlı chunk haritasından **komşu chunk'lar** alarak büyü; bırakınca kısmi iade. Alan hiçbir zaman adalara bölünemez.
+- Blok **kimse tarafından kırılamaz**. Silmek için onay menüsü **ve** claim ismini sohbete yazmak gerekir — geliştirmeler ve chunk'lar iade edilir.
+- Bloğu ana chunk içinde istediğin yere taşı.
+
+**Yönetim menüsü** (bloğa sağ tık veya `/claim`)
+
+| Satır | Öğeler |
+|---|---|
+| Bilgi | İsim, sahip, chunk / üye sayısı, aktif ekonomi |
+| Yönetim | **Ayarlar** (ziyaretçi izinleri) · **Korumalar** (satın alınanları aç/kapa) · **Geliştirmeler** · **Üyeler** |
+| Alan | **Chunklar** (9×5 canlı harita) · **Sınırı göster** · **Işınlan** (shift+tık: ev ayarla) |
+| Sahip | **İsim değiştir** · **Bloğu taşı** · **Sil** |
+
+- **Ayarlar** — 11 ziyaretçi aç/kapa: blok koyma/kırma, etkileşim, sandık, PvP, hayvan, eşya alma/atma, eşya kullanma, canlı etkileşimi, alana giriş.
+- **Korumalar** — patlama / yangın / canavar koruması satın alındıktan sonra geliştirmeyi kaybetmeden açılıp kapatılabilir.
+- **Geliştirmeler** — chunk limiti, üye limiti ve üç koruma. Seviyeler, değerler ve fiyatlar config'den.
+- **Üyeler** — sohbetten isimle ekle, shift+tık ile çıkar, kafaya tıklayınca **üye başına izin editörü** (15 izin: temel + yönetim).
+- **Chunklar** — sarı = alınabilir (tıkla), yeşil = senin (shift+tık bırak), kırmızı = başkasının; fiyat ve iadeler görünür.
+
+**Hologram** — bloğun üstünde isim, sahip, chunk ve üye sayısı; satırlar dil dosyasından.
+
+**Animasyonlu sınır önizlemesi** (`/border`)
+- Kare claim: istemci tarafı dünya sınırı merkezden yumuşakça büyür, bekler, küçülür. Kenara yaklaşınca otomatik kapanır, hareketi engellemez.
+- Diğer şekiller (L, T, şerit…): claim'in **gerçek çevresi** ana chunk'tan dışa yayılan partiküllerle çizilir.
+
+**Işınlanma** (`/chome`) — geri sayım, hareket/hasar ile iptal, cooldown, isteğe bağlı ücret. Ev noktası varsayılan blok üstü; claim içinde istediğin yere ayarlanabilir.
+
+**Ekonomi** — `AUTO` (Vault varsa Vault, yoksa elmas), `VAULT` veya `DIAMOND`. Elmas modu elmas bloğunu 9 sayar, para üstü verir. Her fiyatın Vault ve elmas değeri ayrı.
+
+**Koruma** — blok, sandık (sınır ötesi çift sandık dahil), etkileşim, PvP, hayvan, tablo/zırh askısı/araç, patlama, yangın (alev oku dahil), sınırı geçen piston ve sıvı, içeri püskürten dispenser, enderman/wither/ravager, giriş yasağı. Sahip ve üyeler izinlerine göre muaf.
+
+**Dil desteği** — `language: en` / `tr`. Mesajlar, GUI, hologram, eşya isimleri ve komut alias'ları dahil *her şey* `lang/<kod>.yml`'de; eksik anahtarlar jar'daki İngilizce dosyadan tamamlanır.
 
 ### 📦 Kurulum
 
 1. **Paper veya Purpur 26.2** ve **Java 25** gerekir.
 2. [Releases](https://github.com/alpyxd/ChunkClaim/releases) sayfasından jar'ı indirip `plugins/` klasörüne at.
 3. *(İsteğe bağlı)* Para ekonomisi için [Vault](https://www.spigotmc.org/resources/vault.34315/) + bir ekonomi eklentisi kur. Vault yoksa otomatik elmas kullanılır.
-4. Sunucuyu başlat, `plugins/ChunkClaim/config.yml` ve `lang/*.yml` dosyalarını düzenle. `/claim reload` ile uygula.
+4. Sunucuyu başlat, `config.yml` içinde `language: tr` yap, `lang/tr.yml`'i dilediğin gibi düzenle. `/claim reload` komut alias'ları dışında her şeyi uygular (alias'lar restart ister).
 
 ### ⌨️ Komutlar
 
@@ -141,7 +197,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 |---|---|---|
 | `/claim` | Yönetim menüsü (kendi claim'in veya üyesi olduğun claim) | `chunkclaim.use` |
 | `/claim info` | Bulunduğun chunk kimin | `chunkclaim.use` |
-| `/border` (`/sinir`, `/alan`) | Bulunduğun / kendi claim'inin sınır önizlemesi | `chunkclaim.use` |
+| `/border` (`/sinir`, `/alan`) | Animasyonlu sınır önizlemesi | `chunkclaim.use` |
 | `/chome` (`/cev`) | Claim'ine ışınlan | `chunkclaim.use` |
 | `/claim sethome` | Işınlanma noktasını buraya ayarla | `chunkclaim.use` |
 | `/claim claim` / `unclaim` | Bulunduğun chunk'ı al / bırak | `chunkclaim.use` |
@@ -169,8 +225,6 @@ cd ChunkClaim
 ```
 
 Jar `build/libs/` altına çıkar. Gradle wrapper dahil; sadece JDK 25 gerekir.
-
-> **Not:** Patlama ve yangın koruması *geliştirme* olarak satılır (varsayılan kapalı). Her zaman açık olsun istersen ilgili geliştirmede `base: 1` yapıp `levels` listesini boşalt.
 
 ---
 
