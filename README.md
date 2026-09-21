@@ -78,6 +78,7 @@ economy:
     vault:   { base: 100, per-chunk: 50 }
     diamond: { base: 2,   per-chunk: 1 }
   unclaim-refund: 0.5             # owner only
+  delete-refund: 0.5              # upgrades + chunks, owner only
 upgrades:
   max-chunks:
     base: 4

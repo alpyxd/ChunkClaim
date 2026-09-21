@@ -6,6 +6,7 @@ import dev.alpay.chunkclaim.util.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -30,7 +31,9 @@ public class DeleteConfirmMenu extends Menu {
 
     @Override
     protected void build() {
-        Map<String, String> ph = plugin.claims().placeholders(claim);
+        Map<String, String> ph = new HashMap<>(plugin.claims().placeholders(claim));
+        double refund = claim.isOwner(player.getUniqueId()) ? plugin.claims().deleteRefund(claim) : 0;
+        ph.put("refund", plugin.economy().provider().format(refund));
 
         set(4, ItemBuilder.of(Material.TNT)
                 .placeholders(ph)

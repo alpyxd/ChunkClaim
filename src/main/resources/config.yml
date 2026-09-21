@@ -43,8 +43,11 @@ economy:
     diamond:
       base: 2
       per-chunk: 1
-  # Refund ratio when unclaiming (0.0 - 1.0). Refund goes to the OWNER only.
+  # Refund ratio when unclaiming a chunk (0.0 - 1.0). Refund goes to the OWNER only.
   unclaim-refund: 0.5
+  # Refund ratio when the claim is deleted: all purchased upgrade levels + extra chunks.
+  # Paid to the owner only (an admin deleting someone else's claim refunds nothing).
+  delete-refund: 0.5
 
 # Upgrades. Each level: cost (Vault), diamond (diamonds), value.
 # Level 0 = base. Levels are bought in order.

@@ -50,6 +50,7 @@ public class Settings {
     private double diamondChunkPriceBase;
     private double diamondChunkPricePerChunk;
     private double unclaimRefund;
+    private double deleteRefund;
 
     private final Map<UpgradeType, Integer> upgradeBase = new EnumMap<>(UpgradeType.class);
     private final Map<UpgradeType, List<UpgradeLevel>> upgradeLevels = new EnumMap<>(UpgradeType.class);
@@ -123,6 +124,7 @@ public class Settings {
         diamondChunkPriceBase = c.getDouble("economy.chunk-price.diamond.base", 2);
         diamondChunkPricePerChunk = c.getDouble("economy.chunk-price.diamond.per-chunk", 1);
         unclaimRefund = Math.max(0, Math.min(1, c.getDouble("economy.unclaim-refund", 0.5)));
+        deleteRefund = Math.max(0, Math.min(1, c.getDouble("economy.delete-refund", unclaimRefund)));
 
         upgradeBase.clear();
         upgradeLevels.clear();
@@ -260,6 +262,7 @@ public class Settings {
     public EconomyType economyType() { return economyType; }
     public boolean diamondAcceptBlocks() { return diamondAcceptBlocks; }
     public double unclaimRefund() { return unclaimRefund; }
+    public double deleteRefund() { return deleteRefund; }
     public boolean hologramEnabled() { return hologramEnabled; }
     public double hologramYOffset() { return hologramYOffset; }
     public int hologramUpdateInterval() { return hologramUpdateInterval; }

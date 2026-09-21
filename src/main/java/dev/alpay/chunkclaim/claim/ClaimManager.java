@@ -245,14 +245,35 @@ public class ClaimManager {
     }
 
     /**
+     * Claim silinirse iade edilecek tutar: satın alınmış tüm geliştirme seviyeleri + ana chunk dışındaki
+     * chunk'ların ödenen fiyatı, delete-refund oranıyla. Aktif ekonomiye göre hesaplanır.
+     */
+    public double deleteRefund(Claim claim) {
+        Settings s = plugin.settings();
+        double total = 0;
+        for (UpgradeType type : UpgradeType.values()) {
+            List<UpgradeLevel> levels = s.upgradeLevels(type);
+            int level = Math.min(claim.getUpgradeLevel(type), levels.size());
+            for (int i = 0; i < level; i++) total += plugin.economy().upgradeCost(levels.get(i));
+        }
+        // n. chunk alınırken ödenen fiyat = chunkPrice(n-1); ana chunk ücretsiz
+        for (int n = 2; n <= claim.getChunkCount(); n++) total += plugin.economy().chunkPrice(n - 1);
+        return total * s.deleteRefund();
+    }
+
+    /**
      * Onaylı silme akışının son adımı: yönetim bloğunu dünyadan kaldırır,
-     * bloğu oyuncuya geri verir, claim'i siler. Sadece sahip/admin.
+     * bloğu oyuncuya geri verir, iadeyi öder, claim'i siler. Sadece sahip/admin.
+     * İade yalnızca sahibin kendisi silerse yapılır.
      */
     public boolean deleteClaimByPlayer(Player player, Claim claim) {
         if (!canManage(player, claim)) {
             plugin.messages().send(player, "not-manage-permission");
             return false;
         }
+        if (!exists(claim)) return false;
+        EconomyProvider eco = plugin.economy().provider();
+        double refund = claim.isOwner(player.getUniqueId()) ? deleteRefund(claim) : 0;
         Location b = claim.getBlockLocation();
         deleteClaim(claim);
         if (b != null && b.getWorld() != null) {
@@ -260,7 +281,8 @@ public class ClaimManager {
             player.getInventory().addItem(plugin.claimBlockItem().create(1)).values()
                     .forEach(left -> player.getWorld().dropItemNaturally(player.getLocation(), left));
         }
-        plugin.messages().send(player, "claim-removed");
+        if (refund > 0) eco.deposit(player, refund);
+        plugin.messages().send(player, "claim-removed", Map.of("refund", eco.format(refund)));
         return true;
     }
 
