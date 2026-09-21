@@ -225,7 +225,9 @@ public class ClaimManager {
             plugin.messages().send(player, "name-too-long", Map.of("max", String.valueOf(max)));
             return false;
         }
-        if (!plugin.settings().namePattern().matcher(trimmed).matches()) {
+        // Sohbet promptlarında "iptal"/"cancel" özel anlam taşır → böyle bir isim silmeyi kilitler
+        if (!plugin.settings().namePattern().matcher(trimmed).matches()
+                || trimmed.equalsIgnoreCase("iptal") || trimmed.equalsIgnoreCase("cancel")) {
             plugin.messages().send(player, "name-invalid");
             return false;
         }
@@ -485,8 +487,8 @@ public class ClaimManager {
     public boolean toggleMemberPermission(Player actor, Claim claim, UUID target, MemberPermission perm) {
         if (!exists(claim) || !claim.isMember(target)) return false;
         if (!require(actor, claim, MemberPermission.MANAGE_MEMBERS)) return false;
-        // Üye yöneticisi başka bir yöneticinin izinlerine dokunamaz
-        if (!canManage(actor, claim) && claim.hasPermission(target, MemberPermission.MANAGE_MEMBERS)) {
+        // Üye yöneticisi ne başka bir yöneticinin ne de KENDİ izinlerine dokunabilir (sahibin kapattığını geri açamasın)
+        if (!canManage(actor, claim) && (target.equals(actor.getUniqueId()) || claim.hasPermission(target, MemberPermission.MANAGE_MEMBERS))) {
             plugin.messages().send(actor, "member-cannot-remove-manager");
             return false;
         }

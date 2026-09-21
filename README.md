@@ -52,7 +52,7 @@
 
 **Economy** — `AUTO` (Vault if present, else diamonds), `VAULT` or `DIAMOND`. Diamond mode counts diamond blocks as 9 and gives change. Every price has a Vault value and a diamond value.
 
-**Protection** — blocks, containers (incl. the double-chest-across-border trick), interactions, PvP, animals, item frames / armor stands / vehicles, explosions, fire (incl. flaming arrows), pistons and liquids crossing the border, dispensers firing into claims, enderman / wither / ravager griefing, no-enter zones. Owner and members are exempt according to their permissions.
+**Protection** — blocks, signs, containers (incl. the double-chest-across-border trick), interactions, PvP (no hitting out of a safe zone; TNT, pets, harmful potions and fishing rods count too), animals, item frames / armor stands / vehicles, explosions, fire (incl. flaming arrows), pistons and liquids crossing the border, dispensers firing into claims, enderman / wither / ravager griefing, no-enter zones. Owner and members are exempt according to their permissions.
 
 **Localization** — `language: en` / `tr`. *Every* string (messages, GUI, hologram, item names, even command aliases) lives in `lang/<code>.yml`; missing keys fall back to the bundled English file. A new language is copy → translate.
 
@@ -185,7 +185,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 
 **Ekonomi** — `AUTO` (Vault varsa Vault, yoksa elmas), `VAULT` veya `DIAMOND`. Elmas modu elmas bloğunu 9 sayar, para üstü verir. Her fiyatın Vault ve elmas değeri ayrı.
 
-**Koruma** — blok, sandık (sınır ötesi çift sandık dahil), etkileşim, PvP, hayvan, tablo/zırh askısı/araç, patlama, yangın (alev oku dahil), sınırı geçen piston ve sıvı, içeri püskürten dispenser, enderman/wither/ravager, giriş yasağı. Sahip ve üyeler izinlerine göre muaf.
+**Koruma** — blok, tabela, sandık (sınır ötesi çift sandık dahil), etkileşim, PvP (güvenli bölgeden dışarı vurma yok; TNT, evcil hayvan, zararlı iksir ve olta da sayılır), hayvan, tablo/zırh askısı/araç, patlama, yangın (alev oku dahil), sınırı geçen piston ve sıvı, içeri püskürten dispenser, enderman/wither/ravager, giriş yasağı. Sahip ve üyeler izinlerine göre muaf.
 
 **Dil desteği** — `language: en` / `tr`. Mesajlar, GUI, hologram, eşya isimleri ve komut alias'ları dahil *her şey* `lang/<kod>.yml`'de; eksik anahtarlar jar'daki İngilizce dosyadan tamamlanır.
 

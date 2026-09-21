@@ -23,6 +23,7 @@ public class MovementListener implements Listener {
 
     private final ChunkClaimPlugin plugin;
     private final Map<UUID, UUID> lastClaim = new ConcurrentHashMap<>();
+    private final Map<UUID, Long> lastEnterMessage = new ConcurrentHashMap<>();
 
     public MovementListener(ChunkClaimPlugin plugin) {
         this.plugin = plugin;
@@ -30,6 +31,7 @@ public class MovementListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onMove(PlayerMoveEvent e) {
+        if (e instanceof PlayerTeleportEvent) return; // onTeleport ayrıca işler (alt sınıf olayı iki kez gelir)
         Location from = e.getFrom();
         Location to = e.getTo();
         if (from.getX() != to.getX() || from.getZ() != to.getZ()) plugin.border().onMove(e.getPlayer(), to);
@@ -53,7 +55,13 @@ public class MovementListener implements Listener {
 
         if (toClaim != null && !toClaim.getFlag(ClaimFlag.ENTER)
                 && !toClaim.isTrusted(player.getUniqueId()) && !plugin.claims().canBypass(player)) {
-            plugin.messages().send(player, "protection-enter");
+            // Sınıra yaslanan oyuncuya her tick mesaj gitmesin
+            long now = System.currentTimeMillis();
+            Long last = lastEnterMessage.get(player.getUniqueId());
+            if (last == null || now - last > 2000) {
+                lastEnterMessage.put(player.getUniqueId(), now);
+                plugin.messages().send(player, "protection-enter");
+            }
             return true;
         }
 
@@ -78,6 +86,7 @@ public class MovementListener implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
         lastClaim.remove(e.getPlayer().getUniqueId());
+        lastEnterMessage.remove(e.getPlayer().getUniqueId());
         plugin.border().cancel(e.getPlayer());
     }
 }

@@ -93,7 +93,8 @@ public class MembersMenu extends Menu {
                 if (answer == null) {
                     msg().send(player, "member-add-cancelled");
                 } else {
-                    OfflinePlayer target = Bukkit.getPlayer(answer);
+                    // getPlayer(String) kısmi eşleşme yapar → yanlış oyuncu; tam isim şart
+                    OfflinePlayer target = Bukkit.getPlayerExact(answer);
                     if (target == null) target = Bukkit.getOfflinePlayerIfCached(answer);
                     if (target == null) {
                         msg().send(player, "player-not-found", Map.of("player", Messages.mm().escapeTags(answer)));

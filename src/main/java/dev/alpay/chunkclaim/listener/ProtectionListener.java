@@ -13,7 +13,9 @@ import org.bukkit.block.Chest;
 import org.bukkit.block.Container;
 import org.bukkit.block.DoubleChest;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.entity.AreaEffectCloud;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Enemy;
 import org.bukkit.entity.Entity;
@@ -23,8 +25,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Ravager;
 import org.bukkit.entity.Silverfish;
+import org.bukkit.entity.TNTPrimed;
+import org.bukkit.entity.Tameable;
 import org.bukkit.entity.Vehicle;
 import org.bukkit.entity.Wither;
+import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectTypeCategory;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -113,13 +122,25 @@ public class ProtectionListener implements Listener {
         return true;
     }
 
+    /** Hasarın/eylemin arkasındaki oyuncu: kendisi, mermisi, ateşlediği TNT, evcil hayvanı, iksir bulutu. */
     private Player playerFrom(Entity entity) {
         if (entity instanceof Player p) return p;
         if (entity instanceof Projectile proj) {
             ProjectileSource src = proj.getShooter();
             if (src instanceof Player p) return p;
         }
+        if (entity instanceof TNTPrimed tnt && tnt.getSource() instanceof Player p) return p;
+        if (entity instanceof AreaEffectCloud cloud && cloud.getSource() instanceof Player p) return p;
+        if (entity instanceof Tameable tamed && tamed.isTamed() && tamed.getOwner() instanceof Player p) return p;
         return null;
+    }
+
+    /** İki konumdan biri PvP kapalı bir claim'deyse PvP yasak (güvenli bölgeden dışarı vurma açığı). */
+    private boolean pvpDenied(Player attacker, Location attackerLoc, Location victimLoc) {
+        if (plugin.claims().canBypass(attacker)) return false;
+        Claim a = plugin.claims().getClaimAt(attackerLoc);
+        Claim v = plugin.claims().getClaimAt(victimLoc);
+        return (a != null && !a.getFlag(ClaimFlag.PVP)) || (v != null && !v.getFlag(ClaimFlag.PVP));
     }
 
     private boolean isSpawnEgg(Material m) {
@@ -280,18 +301,18 @@ public class ProtectionListener implements Listener {
     public void onDamage(EntityDamageByEntityEvent e) {
         Entity victim = e.getEntity();
         Player attacker = playerFrom(e.getDamager());
-        Claim claim = plugin.claims().getClaimAt(victim.getLocation());
-        if (claim == null) return;
 
         if (victim instanceof Player) {
             if (attacker == null || attacker == victim) return;
-            if (plugin.claims().canBypass(attacker)) return;
-            if (!claim.getFlag(ClaimFlag.PVP)) {
+            if (pvpDenied(attacker, attacker.getLocation(), victim.getLocation())) {
                 plugin.messages().send(attacker, "protection-pvp");
                 e.setCancelled(true);
             }
             return;
         }
+
+        Claim claim = plugin.claims().getClaimAt(victim.getLocation());
+        if (claim == null) return;
 
         if (attacker == null) {
             // Patlama / mob hasarı ile tablo, zırh askısı vb. kırılmasın
@@ -300,7 +321,7 @@ public class ProtectionListener implements Listener {
             }
             return;
         }
-        if (victim instanceof ArmorStand || victim instanceof Hanging || victim instanceof Vehicle) {
+        if (victim instanceof ArmorStand || victim instanceof Hanging || victim instanceof Vehicle || victim instanceof EnderCrystal) {
             if (deny(attacker, victim.getLocation(), ClaimFlag.BREAK, "protection-break")) e.setCancelled(true);
             return;
         }
@@ -308,6 +329,45 @@ public class ProtectionListener implements Listener {
         if (passive && deny(attacker, victim.getLocation(), ClaimFlag.ANIMAL_DAMAGE, "protection-animal")) {
             e.setCancelled(true);
         }
+    }
+
+    /** Zararlı iksirler: PvP kapalı alandaki oyunculara ve izinsiz hayvanlara etki etmesin. */
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onPotionSplash(PotionSplashEvent e) {
+        Player thrower = playerFrom(e.getEntity());
+        if (thrower == null) return;
+        boolean harmful = false;
+        for (PotionEffect effect : e.getPotion().getEffects()) {
+            if (effect.getType().getCategory() == PotionEffectTypeCategory.HARMFUL) { harmful = true; break; }
+        }
+        if (!harmful) return;
+        for (LivingEntity affected : e.getAffectedEntities()) {
+            if (affected == thrower) continue;
+            if (affected instanceof Player) {
+                if (pvpDenied(thrower, thrower.getLocation(), affected.getLocation())) e.setIntensity(affected, 0);
+            } else if (!(affected instanceof Enemy) && !allowed(thrower, affected.getLocation(), ClaimFlag.ANIMAL_DAMAGE)) {
+                e.setIntensity(affected, 0);
+            }
+        }
+    }
+
+    /** Olta ile oyuncu/hayvan çekme. */
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onFish(PlayerFishEvent e) {
+        if (e.getState() != PlayerFishEvent.State.CAUGHT_ENTITY || e.getCaught() == null) return;
+        Entity caught = e.getCaught();
+        Player p = e.getPlayer();
+        if (caught instanceof Player) {
+            if (pvpDenied(p, p.getLocation(), caught.getLocation())) e.setCancelled(true);
+        } else if (deny(p, caught.getLocation(), ClaimFlag.ENTITY_INTERACT, "protection-interact")) {
+            e.setCancelled(true);
+        }
+    }
+
+    /** Tabela yazma/düzenleme: blok koyma izni ister. */
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onSignChange(SignChangeEvent e) {
+        if (deny(e.getPlayer(), e.getBlock().getLocation(), ClaimFlag.BUILD, "protection-build")) e.setCancelled(true);
     }
 
     // ---------- Eşya ----------
