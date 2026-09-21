@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -260,6 +261,53 @@ public class ClaimManager {
                     .forEach(left -> player.getWorld().dropItemNaturally(player.getLocation(), left));
         }
         plugin.messages().send(player, "claim-removed");
+        return true;
+    }
+
+    /**
+     * Yönetim bloğunu oyuncunun durduğu yere taşır. Sadece sahip/admin.
+     * Hedef claim içinde ve boş (hava/çimen gibi değiştirilebilir) olmalı.
+     */
+    public boolean moveBlockHere(Player player, Claim claim) {
+        Messages m = plugin.messages();
+        if (!exists(claim)) return false;
+        if (!canManage(player, claim)) {
+            m.send(player, "not-manage-permission");
+            return false;
+        }
+        Location target = player.getLocation().getBlock().getLocation();
+        if (!claim.hasChunk(ChunkKey.of(target))) {
+            m.send(player, "block-move-outside");
+            return false;
+        }
+        Location old = claim.getBlockLocation();
+        if (old != null && old.getWorld() != null && old.getWorld().equals(target.getWorld())
+                && old.getBlockX() == target.getBlockX() && old.getBlockY() == target.getBlockY() && old.getBlockZ() == target.getBlockZ()) {
+            m.send(player, "block-move-same");
+            return false;
+        }
+        Block targetBlock = target.getBlock();
+        if (!targetBlock.getType().isAir() && !targetBlock.isReplaceable()) {
+            m.send(player, "block-move-blocked");
+            return false;
+        }
+
+        plugin.holograms().remove(claim);
+        if (old != null && old.getWorld() != null && old.getBlock().getType() == plugin.settings().claimBlockMaterial()) {
+            old.getBlock().setType(org.bukkit.Material.AIR);
+        }
+        targetBlock.setType(plugin.settings().claimBlockMaterial());
+        claim.relocateBlock(target);
+        save(claim);
+        plugin.holograms().spawn(claim);
+        plugin.menus().refreshAllFor(claim);
+
+        // Oyuncu bloğun içinde kalmasın
+        Location up = target.clone().add(0.5, 1.0, 0.5);
+        up.setYaw(player.getLocation().getYaw());
+        up.setPitch(player.getLocation().getPitch());
+        player.teleport(up);
+        m.send(player, "block-moved");
         return true;
     }
 

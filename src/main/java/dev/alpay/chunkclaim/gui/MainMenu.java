@@ -134,6 +134,14 @@ public class MainMenu extends Menu {
                 .build(), c -> new ProtectionsMenu(plugin, player, claim).open());
 
         if (plugin.claims().canManage(player, claim)) {
+            set(0, ItemBuilder.of(Material.PISTON)
+                    .name(t("move-name"))
+                    .lore(tl("move-lore"))
+                    .build(), c -> {
+                player.closeInventory();
+                plugin.claims().moveBlockHere(player, claim);
+            });
+
             set(18, ItemBuilder.of(Material.TNT)
                     .name(t("delete-name"))
                     .lore(tl("delete-lore"))

@@ -66,6 +66,10 @@ claim-block-use-menu: "<yellow>The control block can't be broken. <gray>To delet
 delete-confirm-prompt: "<red><bold>FINAL STEP:</bold> <gray>Type the claim name exactly to confirm deletion: <white>{name}<gray>. Type <white>cancel<gray> to abort."
 delete-name-mismatch: "<red>Name didn't match, deletion cancelled. <gray>(Expected: <white>{name}<gray>)"
 delete-cancelled: "<gray>Deletion cancelled."
+block-moved: "<green>Control block moved to your position. <gray>This is now the origin chunk."
+block-move-outside: "<red>The block can only be moved inside your claim."
+block-move-blocked: "<red>Your position isn't free. <gray>Stand in an empty spot and try again."
+block-move-same: "<red>The block is already here."
 
 # ---------- Chunks ----------
 chunk-claimed: "<green>Chunk claimed! <gray>(<white>{chunks}<gray>/<white>{max}<gray>) Paid: <white>{cost}"
@@ -140,6 +144,7 @@ help: |-
   <yellow>/claim sethome <gray>- Set the teleport point
   <yellow>/claim claim <gray>- Claim the chunk you're in
   <yellow>/claim unclaim <gray>- Release the chunk you're in
+  <yellow>/claim moveblock <gray>- Move the control block to your position
   <yellow>/claim delete <gray>- Delete the claim (with confirmation)
   <yellow>/claim give <player> [amount] <gray>- Give a claim block (admin)
   <yellow>/claim reload <gray>- Reload configuration (admin)
@@ -264,6 +269,13 @@ gui:
       - "<gray>Fire: {fire}"
       - "<gray>Mob Spawn Block: {mob}"
       - ""
+    move-name: "<gold><bold>Move Block Here</bold>"
+    move-lore:
+      - "<gray>Moves the control block to"
+      - "<gray>your position. Its chunk becomes"
+      - "<gray>the new origin chunk."
+      - ""
+      - "<yellow>Click → Move"
     delete-name: "<dark_red><bold>Delete Claim</bold>"
     delete-lore:
       - "<gray>Removes the claim entirely."

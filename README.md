@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 # ChunkClaim
 
@@ -25,7 +25,7 @@
 - **GUI-driven management** — main menu with sub-menus:
   - **Settings** — 11 visitor toggles: place, break, interact (doors/buttons), containers, PvP, harm animals, item pickup/drop, use items (buckets, flint & steel…), entity interaction, enter area.
   - **Upgrades** — chunk limit, member limit, explosion protection, fire protection, mob-spawn block. Levels and prices are configurable.
-  - **Members** — add by typing a name in chat, remove with shift-click, and click a head to open the **per-member permission editor** (14 permissions, basic + management).
+  - **Members** — add by typing a name in chat, remove with shift-click, and click a head to open the **per-member permission editor** (15 permissions, basic + management).
   - **Chunks** — a live 9×5 chunk map: yellow = claimable (click to buy), green = yours (shift-click to release), red = someone else's.
   - **Protections** — toggle purchased protections (explosion / fire / mob spawn) on or off without losing them.
   - **Teleport / Set home**, **Rename**, **Show border**, **Delete** (owner only).
@@ -53,6 +53,7 @@
 | `/chome` (`/claim home`) | Teleport to your claim | `chunkclaim.use` |
 | `/claim sethome` | Set the teleport point to your position | `chunkclaim.use` |
 | `/claim claim` / `unclaim` | Claim / release the chunk you're standing in | `chunkclaim.use` |
+| `/claim moveblock` | Move the control block to your position (owner) | `chunkclaim.use` |
 | `/claim delete` | Delete the claim (confirmation menu + type the name) | `chunkclaim.use` |
 | `/claim give <player> [amount]` | Give claim control blocks | `chunkclaim.admin` |
 | `/claim reload` | Reload config & language files | `chunkclaim.admin` |
@@ -116,7 +117,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 - **GUI ile yönetim** — ana menü ve alt menüler:
   - **Ayarlar** — 11 ziyaretçi aç/kapa: blok koyma/kırma, etkileşim, sandık, PvP, hayvan, eşya alma/atma, eşya kullanma, canlı etkileşimi, alana giriş.
   - **Geliştirmeler** — chunk limiti, üye limiti, patlama/yangın koruması, canavar engeli. Seviyeler ve fiyatlar config'de.
-  - **Üyeler** — sohbetten isimle ekle, shift+tık ile çıkar, kafaya tıklayınca **üye başına izin editörü** (14 izin: temel + yönetim).
+  - **Üyeler** — sohbetten isimle ekle, shift+tık ile çıkar, kafaya tıklayınca **üye başına izin editörü** (15 izin: temel + yönetim).
   - **Chunklar** — canlı 9×5 chunk haritası: sarı = alınabilir (tıkla), yeşil = senin (shift+tık bırak), kırmızı = başkasının.
   - **Korumalar** — satın alınan korumaları (patlama / yangın / canavar) kaybetmeden aç/kapa.
   - **Işınlan / Ev ayarla**, **İsim değiştir**, **Sınırı göster**, **Sil** (sadece sahip).
@@ -143,6 +144,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 | `/chome` (`/cev`) | Claim'ine ışınlan | `chunkclaim.use` |
 | `/claim sethome` | Işınlanma noktasını buraya ayarla | `chunkclaim.use` |
 | `/claim claim` / `unclaim` | Bulunduğun chunk'ı al / bırak | `chunkclaim.use` |
+| `/claim moveblock` | Yönetim bloğunu bulunduğun yere taşı (sahip) | `chunkclaim.use` |
 | `/claim delete` | Claim'i sil (onay menüsü + isim yazma) | `chunkclaim.use` |
 | `/claim give <oyuncu> [adet]` | Claim bloğu ver | `chunkclaim.admin` |
 | `/claim reload` | Config ve dil dosyalarını yenile | `chunkclaim.admin` |

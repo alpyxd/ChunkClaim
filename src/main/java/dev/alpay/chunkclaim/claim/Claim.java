@@ -20,7 +20,7 @@ public class Claim {
     private final Set<UUID> members = new LinkedHashSet<>();
     private final Map<UUID, Set<MemberPermission>> memberPermissions = new HashMap<>();
     private final Set<ChunkKey> chunks = new LinkedHashSet<>();
-    private final ChunkKey originChunk;
+    private ChunkKey originChunk;
     private Location blockLocation;
     private Location home;
     private final Map<ClaimFlag, Boolean> flags = new EnumMap<>(ClaimFlag.class);
@@ -155,6 +155,14 @@ public class Claim {
 
     public ChunkKey getOriginChunk() {
         return originChunk;
+    }
+
+    /** Yönetim bloğunu taşırken: yeni konum claim'in bir chunk'ında olmalı; ana chunk da oraya kayar. */
+    public void relocateBlock(Location newLocation) {
+        ChunkKey key = ChunkKey.of(newLocation);
+        if (!chunks.contains(key)) throw new IllegalArgumentException("Location is outside the claim");
+        this.blockLocation = newLocation.clone();
+        this.originChunk = key;
     }
 
     public Location getBlockLocation() {

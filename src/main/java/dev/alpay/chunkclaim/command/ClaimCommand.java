@@ -94,6 +94,11 @@ public class ClaimCommand implements TabExecutor {
                 }
                 plugin.teleports().setHome(player, claim);
             }
+            case "moveblock", "move" -> {
+                Claim claim = plugin.claims().getRelevantClaim(player);
+                if (claim == null) { m.send(player, "no-claim"); return true; }
+                plugin.claims().moveBlockHere(player, claim);
+            }
             case "delete", "sil" -> {
                 Claim claim = plugin.claims().getRelevantClaim(player);
                 if (claim == null) { m.send(player, "no-claim"); return true; }
@@ -136,7 +141,7 @@ public class ClaimCommand implements TabExecutor {
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, String[] args) {
         List<String> out = new ArrayList<>();
         if (args.length == 1) {
-            List<String> subs = new ArrayList<>(List.of("menu", "info", "border", "home", "sethome", "claim", "unclaim", "delete", "help"));
+            List<String> subs = new ArrayList<>(List.of("menu", "info", "border", "home", "sethome", "claim", "unclaim", "moveblock", "delete", "help"));
             if (sender.hasPermission("chunkclaim.admin")) subs.addAll(List.of("give", "reload"));
             for (String s : subs) if (s.startsWith(args[0].toLowerCase(Locale.ROOT))) out.add(s);
         } else if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
