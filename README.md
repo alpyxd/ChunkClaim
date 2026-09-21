@@ -53,7 +53,7 @@
 | `/chome` (`/claim home`) | Teleport to your claim | `chunkclaim.use` |
 | `/claim sethome` | Set the teleport point to your position | `chunkclaim.use` |
 | `/claim claim` / `unclaim` | Claim / release the chunk you're standing in | `chunkclaim.use` |
-| `/claim moveblock` | Move the control block to your position (owner) | `chunkclaim.use` |
+| `/claim moveblock` | Move the control block within the origin chunk (owner) | `chunkclaim.use` |
 | `/claim delete` | Delete the claim (confirmation menu + type the name) | `chunkclaim.use` |
 | `/claim give <player> [amount]` | Give claim control blocks | `chunkclaim.admin` |
 | `/claim reload` | Reload config & language files | `chunkclaim.admin` |
@@ -144,7 +144,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 | `/chome` (`/cev`) | Claim'ine ışınlan | `chunkclaim.use` |
 | `/claim sethome` | Işınlanma noktasını buraya ayarla | `chunkclaim.use` |
 | `/claim claim` / `unclaim` | Bulunduğun chunk'ı al / bırak | `chunkclaim.use` |
-| `/claim moveblock` | Yönetim bloğunu bulunduğun yere taşı (sahip) | `chunkclaim.use` |
+| `/claim moveblock` | Yönetim bloğunu ana chunk içinde taşı (sahip) | `chunkclaim.use` |
 | `/claim delete` | Claim'i sil (onay menüsü + isim yazma) | `chunkclaim.use` |
 | `/claim give <oyuncu> [adet]` | Claim bloğu ver | `chunkclaim.admin` |
 | `/claim reload` | Config ve dil dosyalarını yenile | `chunkclaim.admin` |

@@ -266,7 +266,7 @@ public class ClaimManager {
 
     /**
      * Yönetim bloğunu oyuncunun durduğu yere taşır. Sadece sahip/admin.
-     * Hedef claim içinde ve boş (hava/çimen gibi değiştirilebilir) olmalı.
+     * Hedef ana chunk içinde ve boş (hava/çimen gibi değiştirilebilir) olmalı.
      */
     public boolean moveBlockHere(Player player, Claim claim) {
         Messages m = plugin.messages();
@@ -276,7 +276,7 @@ public class ClaimManager {
             return false;
         }
         Location target = player.getLocation().getBlock().getLocation();
-        if (!claim.hasChunk(ChunkKey.of(target))) {
+        if (!claim.getOriginChunk().equals(ChunkKey.of(target))) {
             m.send(player, "block-move-outside");
             return false;
         }

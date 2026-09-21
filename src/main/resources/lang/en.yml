@@ -66,8 +66,8 @@ claim-block-use-menu: "<yellow>The control block can't be broken. <gray>To delet
 delete-confirm-prompt: "<red><bold>FINAL STEP:</bold> <gray>Type the claim name exactly to confirm deletion: <white>{name}<gray>. Type <white>cancel<gray> to abort."
 delete-name-mismatch: "<red>Name didn't match, deletion cancelled. <gray>(Expected: <white>{name}<gray>)"
 delete-cancelled: "<gray>Deletion cancelled."
-block-moved: "<green>Control block moved to your position. <gray>This is now the origin chunk."
-block-move-outside: "<red>The block can only be moved inside your claim."
+block-moved: "<green>Control block moved to your position."
+block-move-outside: "<red>The block can only be moved within the origin chunk. <gray>(The chunk the control block is in)"
 block-move-blocked: "<red>Your position isn't free. <gray>Stand in an empty spot and try again."
 block-move-same: "<red>The block is already here."
 
@@ -272,8 +272,8 @@ gui:
     move-name: "<gold><bold>Move Block Here</bold>"
     move-lore:
       - "<gray>Moves the control block to"
-      - "<gray>your position. Its chunk becomes"
-      - "<gray>the new origin chunk."
+      - "<gray>your position. Only within"
+      - "<gray>the origin chunk."
       - ""
       - "<yellow>Click → Move"
     delete-name: "<dark_red><bold>Delete Claim</bold>"

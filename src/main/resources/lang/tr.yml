@@ -66,8 +66,8 @@ claim-block-use-menu: "<yellow>Yönetim bloğu kırılamaz. <gray>Claim'i silmek
 delete-confirm-prompt: "<red><bold>SON ADIM:</bold> <gray>Silmeyi onaylamak için claim ismini birebir yaz: <white>{name}<gray>. İptal için <white>iptal<gray> yaz."
 delete-name-mismatch: "<red>İsim eşleşmedi, silme iptal edildi. <gray>(Beklenen: <white>{name}<gray>)"
 delete-cancelled: "<gray>Silme iptal edildi."
-block-moved: "<green>Yönetim bloğu bulunduğun yere taşındı. <gray>Ana chunk artık burası."
-block-move-outside: "<red>Blok sadece claim'inin içine taşınabilir."
+block-moved: "<green>Yönetim bloğu bulunduğun yere taşındı."
+block-move-outside: "<red>Blok sadece ana chunk'ın içinde taşınabilir. <gray>(Yönetim bloğunun bulunduğu chunk)"
 block-move-blocked: "<red>Durduğun yer boş değil. <gray>Boş bir noktada dur ve tekrar dene."
 block-move-same: "<red>Blok zaten burada."
 
@@ -272,8 +272,8 @@ gui:
     move-name: "<gold><bold>Bloğu Buraya Taşı</bold>"
     move-lore:
       - "<gray>Yönetim bloğunu durduğun"
-      - "<gray>yere taşır. Ana chunk da"
-      - "<gray>yeni bloğun chunk'ı olur."
+      - "<gray>yere taşır. Sadece ana chunk"
+      - "<gray>içinde taşınabilir."
       - ""
       - "<yellow>Tıkla → Taşı"
     delete-name: "<dark_red><bold>Claim'i Sil</bold>"
