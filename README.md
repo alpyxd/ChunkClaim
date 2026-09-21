@@ -125,10 +125,13 @@ border:
 
 teleport: { warmup-seconds: 3, cooldown-seconds: 30, cancel-on-move: true, cost: 0 }
 
-creation: { ask-name: true, max-name-length: 24 }
+creation: { ask-name: true, max-name-length: 24, name-pattern: "^[\\p{L}\\p{N} _'\\-.!?]+$" }
+
+hologram: { enabled: true, y-offset: 1.6, update-interval-ticks: 100 }
+compass:  { enabled: true }        # compass + control block = Claim Compass
 ```
 
-Claims are stored as `plugins/ChunkClaim/claims/<uuid>.yml`.
+Claims are stored as `plugins/ChunkClaim/claims/<uuid>.yml`. All text (messages, GUI, hologram lines, item names, command aliases) is in `plugins/ChunkClaim/lang/<code>.yml`.
 
 ### 🔨 Building from source
 
@@ -217,6 +220,46 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 | Blok koyma · Blok kırma · Etkileşim · Sandık · Eşya kullanma · Canlı/hayvan · Işınlanma | Chunk alma · Chunk bırakma · Ayarlar · Koruma yönetimi · Üye yönetimi · Geliştirme satın alma · İsim · Ev noktası |
 
 *Üye yönetimi* izni olan üye başkalarını ekleyip temel izinlerini düzenleyebilir; diğer yöneticilere dokunamaz, yönetim izni veremez.
+
+### ⚙️ Öne çıkan ayarlar
+
+```yaml
+language: tr                      # en | tr
+
+economy:
+  type: AUTO                      # AUTO | VAULT | DIAMOND
+  chunk-price:
+    vault:   { base: 100, per-chunk: 50 }
+    diamond: { base: 2,   per-chunk: 1 }
+  unclaim-refund: 0.5             # chunk bırakma iadesi (sadece sahibe)
+  delete-refund: 0.5              # claim silme iadesi: geliştirmeler + chunklar (sadece sahibe)
+
+upgrades:
+  max-chunks:
+    base: 4
+    levels:
+      - { cost: 500, diamond: 8, value: 9 }
+      # ...
+  explosion-protection:           # aç/kapa tipi geliştirmeler: base 1 = her zaman açık
+    base: 0
+    levels: [ { cost: 2000, diamond: 20, value: 1 } ]
+
+border:
+  mode: AUTO                      # AUTO | WORLD_BORDER | PARTICLES
+  particle-color: "#55FF55"
+  expand-ms: 1500
+  hold-ms: 4000
+  shrink-ms: 1000
+  auto-hide-distance: 2.0
+
+teleport: { warmup-seconds: 3, cooldown-seconds: 30, cancel-on-move: true, cost: 0 }
+
+creation: { ask-name: true, max-name-length: 24 }
+hologram: { enabled: true, y-offset: 1.6 }
+compass:  { enabled: true }        # pusula + yönetim bloğu = Claim Pusulası
+```
+
+Claim'ler `plugins/ChunkClaim/claims/<uuid>.yml` dosyalarında; tüm metinler `plugins/ChunkClaim/lang/<kod>.yml` içinde.
 
 ### 🔨 Kaynaktan derleme
 
