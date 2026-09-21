@@ -81,12 +81,10 @@ public final class ChunkClaimPlugin extends JavaPlugin {
         if (border != null) border.clearAll();
         if (claims != null) claims.saveAll();
         if (claimBlockItem != null) claimBlockItem.unregisterRecipe();
-        ShortcutCommand.unregisterAll();
     }
 
-    /** Dil dosyasındaki alias'larla /border ve /chome kısayollarını (yeniden) kaydeder. */
+    /** Dil dosyasındaki alias'larla /border ve /chome kısayollarını kaydeder (ilk çağrıda; sonrası sadece uyarı). */
     private void registerShortcuts() {
-        ShortcutCommand.unregisterAll();
         ShortcutCommand.register(this, "border", "border", claimCommand::showBorder);
         ShortcutCommand.register(this, "chome", "home", claimCommand::home);
         ShortcutCommand.syncClients();

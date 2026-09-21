@@ -1,8 +1,8 @@
 # ChunkClaim configuration / yapılandırması
 
-# Language file: plugins/ChunkClaim/lang/<code>.yml  (tr, en — or add your own)
-# Dil dosyası: plugins/ChunkClaim/lang/<kod>.yml
-language: tr
+# Language file: plugins/ChunkClaim/lang/<code>.yml  (en, tr — or add your own)
+# Dil dosyası: plugins/ChunkClaim/lang/<kod>.yml  (Türkçe için: tr)
+language: en
 
 # Claim management block / Yönetim bloğu
 claim-block:

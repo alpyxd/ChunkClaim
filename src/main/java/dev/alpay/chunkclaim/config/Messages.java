@@ -19,12 +19,13 @@ import java.util.Map;
 
 /**
  * Dil dosyası okuyucusu (lang/&lt;kod&gt;.yml) + MiniMessage yardımcıları.
- * Eksik anahtarlar: seçilen dilin jar içindeki kopyası → jar içindeki tr.yml.
+ * Eksik anahtarlar: seçilen dilin jar içindeki kopyası → jar içindeki en.yml.
  */
 public class Messages {
 
     private static final MiniMessage MM = MiniMessage.miniMessage();
-    private static final String[] BUNDLED = {"tr", "en"};
+    private static final String[] BUNDLED = {"en", "tr"};
+    private static final String FALLBACK = "en";
 
     private final JavaPlugin plugin;
     private YamlConfiguration config;
@@ -46,20 +47,20 @@ public class Messages {
 
         File file = new File(dir, language + ".yml");
         if (!file.exists()) {
-            plugin.getLogger().warning("Language file not found: " + file.getName() + " — falling back to 'tr'");
-            this.language = "tr";
-            file = new File(dir, "tr.yml");
+            plugin.getLogger().warning("Language file not found: " + file.getName() + " — falling back to '" + FALLBACK + "'");
+            this.language = FALLBACK;
+            file = new File(dir, FALLBACK + ".yml");
         }
         config = YamlConfiguration.loadConfiguration(file);
 
-        // Fallback zinciri: jar'daki aynı dil → jar'daki tr
+        // Fallback zinciri: jar'daki aynı dil → jar'daki en
         YamlConfiguration bundledSame = bundled(this.language);
-        YamlConfiguration bundledTr = bundled("tr");
+        YamlConfiguration bundledFallback = bundled(FALLBACK);
         if (bundledSame != null) {
-            if (bundledTr != null && !this.language.equals("tr")) bundledSame.setDefaults(bundledTr);
+            if (bundledFallback != null && !this.language.equals(FALLBACK)) bundledSame.setDefaults(bundledFallback);
             config.setDefaults(bundledSame);
-        } else if (bundledTr != null) {
-            config.setDefaults(bundledTr);
+        } else if (bundledFallback != null) {
+            config.setDefaults(bundledFallback);
         }
         prefix = config.getString("prefix", "<green>Claim <gray>» ");
     }

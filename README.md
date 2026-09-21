@@ -70,7 +70,7 @@ A member with *Manage members* can add members and edit others' basic permission
 ### ⚙️ Configuration highlights
 
 ```yaml
-language: tr                      # tr | en
+language: en                      # en | tr
 economy:
   type: AUTO                      # AUTO | VAULT | DIAMOND
   chunk-price:

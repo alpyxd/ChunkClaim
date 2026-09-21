@@ -91,7 +91,7 @@ public class Settings {
         plugin.reloadConfig();
         FileConfiguration c = plugin.getConfig();
 
-        language = c.getString("language", "tr").toLowerCase(Locale.ROOT);
+        language = c.getString("language", "en").toLowerCase(Locale.ROOT);
 
         claimBlockMaterial = material(c.getString("claim-block.material", "LODESTONE"), Material.LODESTONE);
         recipeEnabled = c.getBoolean("claim-block.recipe.enabled", true);
