@@ -125,11 +125,13 @@ public class MainMenu extends Menu {
                 "explosion", msg().state(plugin.claims().hasUpgrade(claim, UpgradeType.EXPLOSION_PROTECTION)),
                 "fire", msg().state(plugin.claims().hasUpgrade(claim, UpgradeType.FIRE_PROTECTION)),
                 "mob", msg().state(plugin.claims().hasUpgrade(claim, UpgradeType.MOB_SPAWN_BLOCK)));
-        set(24, ItemBuilder.of(Material.BOOK)
+        set(24, ItemBuilder.of(Material.SHIELD)
                 .placeholders(protPh)
                 .name(t("protections-name"))
                 .lore(tl("protections-lore"))
-                .build());
+                .lore(common("click-open"))
+                .hideAttributes()
+                .build(), c -> new ProtectionsMenu(plugin, player, claim).open());
 
         if (plugin.claims().canManage(player, claim)) {
             set(18, ItemBuilder.of(Material.TNT)

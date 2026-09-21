@@ -27,6 +27,7 @@
   - **Upgrades** — chunk limit, member limit, explosion protection, fire protection, mob-spawn block. Levels and prices are configurable.
   - **Members** — add by typing a name in chat, remove with shift-click, and click a head to open the **per-member permission editor** (14 permissions, basic + management).
   - **Chunks** — a live 9×5 chunk map: yellow = claimable (click to buy), green = yours (shift-click to release), red = someone else's.
+  - **Protections** — toggle purchased protections (explosion / fire / mob spawn) on or off without losing them.
   - **Teleport / Set home**, **Rename**, **Show border**, **Delete** (owner only).
 - **Animated border preview** — for square claims a client-side world border grows smoothly from the centre, holds, then shrinks away (auto-hides when you approach an edge so it never blocks movement). For any other shape (L, T, strips…) the *exact* outline is drawn with particles that spread out from the origin chunk. `/border`.
 - **Teleport** — `/chome` with warmup countdown, cancel-on-move/damage, cooldown and optional cost. Home point defaults to the control block, or set anywhere inside the claim.
@@ -62,7 +63,7 @@
 
 | Basic (default **on**) | Management (default **off**, owner-only to grant) |
 |---|---|
-| Place blocks · Break blocks · Interact · Containers · Use items · Entities / animals · Teleport | Claim chunks · Release chunks · Manage settings · Manage members · Buy upgrades · Rename · Set home |
+| Place blocks · Break blocks · Interact · Containers · Use items · Entities / animals · Teleport | Claim chunks · Release chunks · Manage settings · Manage protections · Manage members · Buy upgrades · Rename · Set home |
 
 A member with *Manage members* can add members and edit others' basic permissions, but cannot touch other managers or grant management permissions — no privilege escalation.
 
@@ -117,6 +118,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
   - **Geliştirmeler** — chunk limiti, üye limiti, patlama/yangın koruması, canavar engeli. Seviyeler ve fiyatlar config'de.
   - **Üyeler** — sohbetten isimle ekle, shift+tık ile çıkar, kafaya tıklayınca **üye başına izin editörü** (14 izin: temel + yönetim).
   - **Chunklar** — canlı 9×5 chunk haritası: sarı = alınabilir (tıkla), yeşil = senin (shift+tık bırak), kırmızı = başkasının.
+  - **Korumalar** — satın alınan korumaları (patlama / yangın / canavar) kaybetmeden aç/kapa.
   - **Işınlan / Ev ayarla**, **İsim değiştir**, **Sınırı göster**, **Sil** (sadece sahip).
 - **Animasyonlu sınır önizlemesi** — kare claim'lerde istemci tarafı dünya sınırı merkezden yumuşakça büyür, bekler, küçülerek kaybolur (kenara yaklaşınca otomatik kapanır, hareketi engellemez). Kare olmayan şekillerde (L, T, şerit…) claim'in *gerçek* çevresi, ana chunk'tan dışa yayılan partiküllerle çizilir. `/border`.
 - **Işınlanma** — `/chome`: geri sayım, hareket/hasar ile iptal, cooldown, isteğe bağlı ücret. Ev noktası varsayılan blok üstü, claim içinde istediğin yere ayarlanabilir.
@@ -151,7 +153,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 
 | Temel (varsayılan **açık**) | Yönetim (varsayılan **kapalı**, sadece sahip verir) |
 |---|---|
-| Blok koyma · Blok kırma · Etkileşim · Sandık · Eşya kullanma · Canlı/hayvan · Işınlanma | Chunk alma · Chunk bırakma · Ayarlar · Üye yönetimi · Geliştirme satın alma · İsim · Ev noktası |
+| Blok koyma · Blok kırma · Etkileşim · Sandık · Eşya kullanma · Canlı/hayvan · Işınlanma | Chunk alma · Chunk bırakma · Ayarlar · Koruma yönetimi · Üye yönetimi · Geliştirme satın alma · İsim · Ev noktası |
 
 *Üye yönetimi* izni olan üye başkalarını ekleyip temel izinlerini düzenleyebilir; diğer yöneticilere dokunamaz, yönetim izni veremez.
 

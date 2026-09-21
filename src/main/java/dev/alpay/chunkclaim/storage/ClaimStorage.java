@@ -96,6 +96,9 @@ public class ClaimStorage {
         }
         for (UpgradeType type : UpgradeType.values()) {
             claim.setUpgradeLevel(type, y.getInt("upgrades." + type.key(), 0));
+            if (y.contains("protections." + type.key())) {
+                claim.setProtectionEnabled(type, y.getBoolean("protections." + type.key()));
+            }
         }
         return claim;
     }
@@ -129,6 +132,7 @@ public class ClaimStorage {
         y.set("chunks", claim.getChunks().stream().map(ChunkKey::serialize).toList());
         for (var e : claim.getFlags().entrySet()) y.set("flags." + e.getKey().name(), e.getValue());
         for (var e : claim.getUpgrades().entrySet()) y.set("upgrades." + e.getKey().key(), e.getValue());
+        for (var e : claim.getProtectionToggles().entrySet()) y.set("protections." + e.getKey().key(), e.getValue());
 
         File file = new File(dir, claim.getId() + ".yml");
         try {

@@ -16,8 +16,8 @@ import java.util.UUID;
  */
 public class MemberPermissionsMenu extends Menu {
 
-    private static final int[] BASIC_SLOTS = {10, 11, 12, 13, 14, 15, 16};
-    private static final int[] MANAGEMENT_SLOTS = {28, 29, 30, 31, 32, 33, 34};
+    private static final int[] BASIC_SLOTS = {10, 11, 12, 13, 14, 15, 16, 17};
+    private static final int[] MANAGEMENT_SLOTS = {28, 29, 30, 31, 32, 33, 34, 35};
 
     private final UUID member;
     private final String memberName;
@@ -40,7 +40,7 @@ public class MemberPermissionsMenu extends Menu {
 
     @Override
     protected int size() {
-        return 45;
+        return 54;
     }
 
     @Override
@@ -55,8 +55,8 @@ public class MemberPermissionsMenu extends Menu {
                 .skull(member)
                 .build());
 
-        set(19, ItemBuilder.of(Material.OAK_SIGN).name(t("basic-header")).build());
-        set(37, ItemBuilder.of(Material.OAK_SIGN)
+        set(9, ItemBuilder.of(Material.OAK_SIGN).name(t("basic-header")).build());
+        set(27, ItemBuilder.of(Material.OAK_SIGN)
                 .name(t("management-header"))
                 .lore(tl("management-header-lore"))
                 .build());
@@ -89,7 +89,7 @@ public class MemberPermissionsMenu extends Menu {
             });
         }
 
-        backButton(40, () -> new MembersMenu(plugin, player, claim).open());
+        backButton(49, () -> new MembersMenu(plugin, player, claim).open());
         fill(Material.GRAY_STAINED_GLASS_PANE);
     }
 }

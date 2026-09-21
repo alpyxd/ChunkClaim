@@ -25,6 +25,8 @@ public class Claim {
     private Location home;
     private final Map<ClaimFlag, Boolean> flags = new EnumMap<>(ClaimFlag.class);
     private final Map<UpgradeType, Integer> upgrades = new EnumMap<>(UpgradeType.class);
+    /** Satın alınmış toggle korumaların açık/kapalı durumu (satın alınınca varsayılan açık). */
+    private final Map<UpgradeType, Boolean> protectionEnabled = new EnumMap<>(UpgradeType.class);
     private final long createdAt;
 
     public Claim(UUID id, UUID owner, String name, ChunkKey originChunk, Location blockLocation, long createdAt) {
@@ -209,6 +211,27 @@ public class Claim {
 
     public Map<UpgradeType, Integer> getUpgrades() {
         return Collections.unmodifiableMap(upgrades);
+    }
+
+    // ---- Koruma aç/kapa ----
+
+    /** Koruma açık mı? (Satın alınıp alınmadığına bakmaz; varsayılan açık.) */
+    public boolean isProtectionEnabled(UpgradeType type) {
+        return protectionEnabled.getOrDefault(type, true);
+    }
+
+    public void setProtectionEnabled(UpgradeType type, boolean enabled) {
+        protectionEnabled.put(type, enabled);
+    }
+
+    public boolean toggleProtection(UpgradeType type) {
+        boolean v = !isProtectionEnabled(type);
+        protectionEnabled.put(type, v);
+        return v;
+    }
+
+    public Map<UpgradeType, Boolean> getProtectionToggles() {
+        return Collections.unmodifiableMap(protectionEnabled);
     }
 
     public long getCreatedAt() {

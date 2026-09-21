@@ -457,9 +457,30 @@ public class ClaimManager {
         return true;
     }
 
-    /** Toggle tipli geliştirme aktif mi? */
-    public boolean hasUpgrade(Claim claim, UpgradeType type) {
+    /** Toggle tipli koruma satın alınmış (veya base ile açık) mı? */
+    public boolean isPurchased(Claim claim, UpgradeType type) {
         return plugin.settings().upgradeValue(claim, type) > 0;
+    }
+
+    /** Koruma etkin mi: satın alınmış VE oyuncu tarafından kapatılmamış. */
+    public boolean hasUpgrade(Claim claim, UpgradeType type) {
+        return isPurchased(claim, type) && claim.isProtectionEnabled(type);
+    }
+
+    /** Satın alınmış bir korumayı aç/kapa. */
+    public boolean toggleProtection(Player player, Claim claim, UpgradeType type) {
+        if (!exists(claim) || !type.isToggle()) return false;
+        if (!require(player, claim, MemberPermission.MANAGE_PROTECTIONS)) return false;
+        if (!isPurchased(claim, type)) {
+            plugin.messages().send(player, "protection-not-purchased", Map.of("protection", plugin.messages().upgradeName(type)));
+            return false;
+        }
+        boolean v = claim.toggleProtection(type);
+        save(claim);
+        plugin.messages().send(player, "protection-toggled", Map.of(
+                "protection", plugin.messages().upgradeName(type),
+                "state", plugin.messages().state(v)));
+        return true;
     }
 
     // ---------- Yardımcı ----------

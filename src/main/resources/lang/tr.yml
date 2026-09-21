@@ -94,6 +94,8 @@ permission-owner-only: "<red>Yönetim izinlerini sadece claim sahibi verebilir."
 flag-toggled: "<gray>{flag}: {state}"
 upgrade-purchased: "<green>{upgrade} <gray>geliştirildi! <gray>Yeni seviye: <white>{level}"
 upgrade-max-level: "<red>Bu geliştirme zaten maksimum seviyede."
+protection-toggled: "<gray>{protection}: {state}"
+protection-not-purchased: "<red>{protection} <gray>henüz satın alınmadı. <gray>Geliştirmeler menüsünden alabilirsin."
 
 # ---------- Koruma ----------
 protection-build: "<red>Burada inşa edemezsin."
@@ -186,6 +188,7 @@ permissions:
   CLAIM_CHUNKS: "Chunk Claim Etme"
   UNCLAIM_CHUNKS: "Chunk Bırakma"
   MANAGE_SETTINGS: "Ayarları Değiştirme"
+  MANAGE_PROTECTIONS: "Koruma Yönetimi"
   MANAGE_MEMBERS: "Üye Yönetimi"
   BUY_UPGRADES: "Geliştirme Satın Alma"
   RENAME: "İsim Değiştirme"
@@ -255,11 +258,12 @@ gui:
     teleport-click: "<yellow>Tıkla → Işınlan"
     teleport-no-permission: "<red>Işınlanma yetkin yok"
     teleport-sethome: "<yellow>Shift + Tıkla → Ev noktasını buraya ayarla"
-    protections-name: "<white><bold>Aktif Korumalar</bold>"
+    protections-name: "<white><bold>Korumalar</bold>"
     protections-lore:
       - "<gray>Patlama: {explosion}"
       - "<gray>Yangın: {fire}"
       - "<gray>Canavar Engeli: {mob}"
+      - ""
     delete-name: "<dark_red><bold>Claim'i Sil</bold>"
     delete-lore:
       - "<gray>Claim'i tamamen kaldırır."
@@ -278,6 +282,22 @@ gui:
     flag-lore:
       - "<gray>Durum: {state}"
       - ""
+  protections:
+    title: "<dark_green><bold>Korumalar</bold>"
+    header-name: "<white><bold>Korumalar</bold>"
+    header-lore:
+      - "<gray>Satın aldığın korumaları buradan"
+      - "<gray>açıp kapatabilirsin."
+    item-name-on: "<green><bold>{protection}</bold>"
+    item-name-off: "<red><bold>{protection}</bold>"
+    item-name-locked: "<dark_gray><bold>{protection}</bold>"
+    item-lore:
+      - "<gray>{description}"
+      - ""
+      - "<gray>Durum: {state}"
+      - ""
+    not-purchased: "<dark_gray>Satın alınmadı"
+    buy-hint: "<yellow>Tıkla → Geliştirmeler menüsünden satın al"
   upgrades:
     title: "<dark_green><bold>Geliştirmeler</bold>"
     balance-name: "<gold><bold>Bakiye</bold>"

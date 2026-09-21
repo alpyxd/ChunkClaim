@@ -21,6 +21,7 @@ public enum MemberPermission {
     CLAIM_CHUNKS(Material.GRASS_BLOCK, false, true),
     UNCLAIM_CHUNKS(Material.DIRT, false, true),
     MANAGE_SETTINGS(Material.COMPARATOR, false, true),
+    MANAGE_PROTECTIONS(Material.SHIELD, false, true),
     MANAGE_MEMBERS(Material.PLAYER_HEAD, false, true),
     BUY_UPGRADES(Material.NETHER_STAR, false, true),
     RENAME(Material.NAME_TAG, false, true),

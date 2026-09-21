@@ -94,6 +94,8 @@ permission-owner-only: "<red>Only the claim owner can grant management permissio
 flag-toggled: "<gray>{flag}: {state}"
 upgrade-purchased: "<green>{upgrade} <gray>upgraded! <gray>New level: <white>{level}"
 upgrade-max-level: "<red>This upgrade is already at max level."
+protection-toggled: "<gray>{protection}: {state}"
+protection-not-purchased: "<red>{protection} <gray>hasn't been purchased yet. <gray>Buy it in the upgrades menu."
 
 # ---------- Protection ----------
 protection-build: "<red>You can't build here."
@@ -186,6 +188,7 @@ permissions:
   CLAIM_CHUNKS: "Claim Chunks"
   UNCLAIM_CHUNKS: "Release Chunks"
   MANAGE_SETTINGS: "Manage Settings"
+  MANAGE_PROTECTIONS: "Manage Protections"
   MANAGE_MEMBERS: "Manage Members"
   BUY_UPGRADES: "Buy Upgrades"
   RENAME: "Rename Claim"
@@ -255,11 +258,12 @@ gui:
     teleport-click: "<yellow>Click → Teleport"
     teleport-no-permission: "<red>No teleport permission"
     teleport-sethome: "<yellow>Shift + Click → Set home point here"
-    protections-name: "<white><bold>Active Protections</bold>"
+    protections-name: "<white><bold>Protections</bold>"
     protections-lore:
       - "<gray>Explosions: {explosion}"
       - "<gray>Fire: {fire}"
       - "<gray>Mob Spawn Block: {mob}"
+      - ""
     delete-name: "<dark_red><bold>Delete Claim</bold>"
     delete-lore:
       - "<gray>Removes the claim entirely."
@@ -278,6 +282,22 @@ gui:
     flag-lore:
       - "<gray>Status: {state}"
       - ""
+  protections:
+    title: "<dark_green><bold>Protections</bold>"
+    header-name: "<white><bold>Protections</bold>"
+    header-lore:
+      - "<gray>Turn the protections you've"
+      - "<gray>purchased on or off."
+    item-name-on: "<green><bold>{protection}</bold>"
+    item-name-off: "<red><bold>{protection}</bold>"
+    item-name-locked: "<dark_gray><bold>{protection}</bold>"
+    item-lore:
+      - "<gray>{description}"
+      - ""
+      - "<gray>Status: {state}"
+      - ""
+    not-purchased: "<dark_gray>Not purchased"
+    buy-hint: "<yellow>Click → Buy in the upgrades menu"
   upgrades:
     title: "<dark_green><bold>Upgrades</bold>"
     balance-name: "<gold><bold>Balance</bold>"
