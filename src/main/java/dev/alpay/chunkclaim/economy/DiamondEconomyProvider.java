@@ -1,5 +1,6 @@
 package dev.alpay.chunkclaim.economy;
 
+import dev.alpay.chunkclaim.config.Messages;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -7,6 +8,7 @@ import org.bukkit.inventory.PlayerInventory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 /**
  * Elmas tabanlı ekonomi. 1 birim = 1 elmas. Fiyatlar yukarı yuvarlanır.
@@ -15,14 +17,16 @@ import java.util.Map;
 public class DiamondEconomyProvider implements EconomyProvider {
 
     private final boolean acceptBlocks;
+    private final Supplier<Messages> messages;
 
-    public DiamondEconomyProvider(boolean acceptBlocks) {
+    public DiamondEconomyProvider(boolean acceptBlocks, Supplier<Messages> messages) {
         this.acceptBlocks = acceptBlocks;
+        this.messages = messages;
     }
 
     @Override
     public String name() {
-        return "Elmas";
+        return messages.get().raw("economy.diamond-name");
     }
 
     @Override
@@ -110,6 +114,6 @@ public class DiamondEconomyProvider implements EconomyProvider {
 
     @Override
     public String format(double amount) {
-        return (int) Math.ceil(amount) + " Elmas";
+        return messages.get().raw("economy.diamond-format", Map.of("amount", String.valueOf((int) Math.ceil(amount))));
     }
 }

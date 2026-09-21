@@ -50,7 +50,7 @@ public class ClaimBlockItem {
         List<String> shape = s.recipeShape();
         Map<Character, Material> ingredients = s.recipeIngredients();
         if (shape.isEmpty() || ingredients.isEmpty()) {
-            plugin.getLogger().warning("Claim bloğu tarifi eksik — tarif kaydedilmedi.");
+            plugin.getLogger().warning("Claim block recipe is incomplete — recipe not registered.");
             return;
         }
         try {
@@ -61,7 +61,7 @@ public class ClaimBlockItem {
             }
             Bukkit.addRecipe(recipe);
         } catch (Exception e) {
-            plugin.getLogger().warning("Claim bloğu tarifi kaydedilemedi: " + e.getMessage());
+            plugin.getLogger().warning("Could not register claim block recipe: " + e.getMessage());
         }
     }
 

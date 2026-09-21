@@ -10,6 +10,21 @@ reloaded: "<green>Configuration reloaded."
 player-not-found: "<red>Player not found: <white>{player}"
 state-on: "<green>ON"
 state-off: "<red>OFF"
+unknown-player: "Unknown"
+
+# ---------- Economy ----------
+economy:
+  diamond-name: "Diamonds"
+  diamond-format: "{amount} Diamonds"
+
+# ---------- Shortcut commands (aliases per language) ----------
+commands:
+  border:
+    description: "Shows the claim border"
+    aliases: [claimborder]
+  home:
+    description: "Teleports you to your claim"
+    aliases: [claimhome]
 
 # ---------- Claim block (item) ----------
 claim-block:

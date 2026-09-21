@@ -3,30 +3,24 @@ version: '${version}'
 main: dev.alpay.chunkclaim.ChunkClaimPlugin
 api-version: '26.2'
 author: Alpay
-description: Chunk tabanlı claim sistemi - yönetim bloğu, hologram, GUI ve ekonomi desteği
+description: Chunk-based land claiming with a control block, hologram, GUI, border preview and economy support
+website: https://github.com/alpyxd/ChunkClaim
 softdepend: [Vault]
 
+# /border and /chome are registered at runtime with language-specific aliases (lang/<code>.yml → commands.*)
 commands:
   claim:
-    description: ChunkClaim ana komutu
-    usage: /claim [info|border|claim|unclaim|give|reload]
+    description: ChunkClaim main command
+    usage: /claim [info|border|home|sethome|claim|unclaim|delete|give|reload]
     aliases: [chunkclaim, cc]
-  border:
-    description: Claim alanının sınırını gösterir
-    usage: /border
-    aliases: [sinir, alan, claimborder]
-  chome:
-    description: Claim'ine ışınlan
-    usage: /chome
-    aliases: [claimhome, chunkhome, cev]
 
 permissions:
   chunkclaim.use:
-    description: Claim oluşturma ve yönetme
+    description: Create and manage claims
     default: true
   chunkclaim.admin:
-    description: Admin komutları ve tüm claimlere erişim
+    description: Admin commands and full access to every claim
     default: op
   chunkclaim.bypass:
-    description: Koruma kurallarını atlar
+    description: Bypass all claim protection
     default: op

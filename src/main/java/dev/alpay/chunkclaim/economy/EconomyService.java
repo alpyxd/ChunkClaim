@@ -1,5 +1,6 @@
 package dev.alpay.chunkclaim.economy;
 
+import dev.alpay.chunkclaim.config.Messages;
 import dev.alpay.chunkclaim.config.Settings;
 import dev.alpay.chunkclaim.config.UpgradeLevel;
 import net.milkbowl.vault.economy.Economy;
@@ -7,16 +8,20 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.function.Supplier;
+
 /** Config'e göre uygun EconomyProvider'ı seçer. */
 public class EconomyService {
 
     private final JavaPlugin plugin;
     private final Settings settings;
+    private final Supplier<Messages> messages;
     private EconomyProvider provider;
 
-    public EconomyService(JavaPlugin plugin, Settings settings) {
+    public EconomyService(JavaPlugin plugin, Settings settings, Supplier<Messages> messages) {
         this.plugin = plugin;
         this.settings = settings;
+        this.messages = messages;
         setup();
     }
 
@@ -28,11 +33,11 @@ public class EconomyService {
             provider = vault;
         } else {
             if (type == Settings.EconomyType.VAULT) {
-                plugin.getLogger().warning("economy.type VAULT ama Vault/ekonomi eklentisi bulunamadı — elmas ekonomisine geçiliyor.");
+                plugin.getLogger().warning("economy.type is VAULT but no Vault economy was found — falling back to diamonds.");
             }
-            provider = new DiamondEconomyProvider(settings.diamondAcceptBlocks());
+            provider = new DiamondEconomyProvider(settings.diamondAcceptBlocks(), messages);
         }
-        plugin.getLogger().info("Ekonomi sağlayıcısı: " + provider.name());
+        plugin.getLogger().info("Economy provider: " + provider.name());
     }
 
     private EconomyProvider hookVault() {

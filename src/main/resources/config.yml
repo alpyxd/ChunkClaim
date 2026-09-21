@@ -81,8 +81,15 @@ hologram:
   y-offset: 1.6
   update-interval-ticks: 100
 
-# Client-side world border preview
+# Claim border preview
 border:
+  # AUTO: square claims use the animated client-side world border, any other shape draws
+  #       the exact outline with particles (a world border is always square).
+  # WORLD_BORDER: always world border (bounding square — covers unclaimed chunks for L-shapes!)
+  # PARTICLES: always particle outline
+  mode: AUTO
+  # Particle outline colour (hex)
+  particle-color: "#55FF55"
   expand-ms: 1500
   hold-ms: 4000
   shrink-ms: 1000

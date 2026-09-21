@@ -28,7 +28,7 @@
   - **Members** — add by typing a name in chat, remove with shift-click, and click a head to open the **per-member permission editor** (14 permissions, basic + management).
   - **Chunks** — a live 9×5 chunk map: yellow = claimable (click to buy), green = yours (shift-click to release), red = someone else's.
   - **Teleport / Set home**, **Rename**, **Show border**, **Delete** (owner only).
-- **Animated border preview** — a client-side world border grows smoothly from the origin chunk's centre to cover the whole claim, holds, then shrinks away. It auto-hides when you approach an edge so it never blocks movement. `/border`.
+- **Animated border preview** — for square claims a client-side world border grows smoothly from the centre, holds, then shrinks away (auto-hides when you approach an edge so it never blocks movement). For any other shape (L, T, strips…) the *exact* outline is drawn with particles that spread out from the origin chunk. `/border`.
 - **Teleport** — `/chome` with warmup countdown, cancel-on-move/damage, cooldown and optional cost. Home point defaults to the control block, or set anywhere inside the claim.
 - **Economy** — `AUTO` (Vault if present, else diamonds), `VAULT` or `DIAMOND`. Diamond mode counts diamond blocks as 9 and gives change. Separate price sets for both.
 - **Protection** — blocks, containers (incl. the double-chest-across-border exploit), interactions, PvP, animals, item frames / armor stands / vehicles, explosions, fire (incl. flaming arrows), pistons and liquids crossing the border, dispensers firing into claims, enderman/wither/ravager griefing, no-enter zones. Owner and members are exempt according to their permissions.
@@ -82,7 +82,7 @@ upgrades:
     levels:
       - { cost: 500, diamond: 8, value: 9 }
       # ...
-border:  { expand-ms: 1500, hold-ms: 4000, shrink-ms: 1000, auto-hide-distance: 2.0 }
+border:  { mode: AUTO, expand-ms: 1500, hold-ms: 4000, shrink-ms: 1000, auto-hide-distance: 2.0 }
 teleport: { warmup-seconds: 3, cooldown-seconds: 30, cancel-on-move: true }
 ```
 
@@ -118,7 +118,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
   - **Üyeler** — sohbetten isimle ekle, shift+tık ile çıkar, kafaya tıklayınca **üye başına izin editörü** (14 izin: temel + yönetim).
   - **Chunklar** — canlı 9×5 chunk haritası: sarı = alınabilir (tıkla), yeşil = senin (shift+tık bırak), kırmızı = başkasının.
   - **Işınlan / Ev ayarla**, **İsim değiştir**, **Sınırı göster**, **Sil** (sadece sahip).
-- **Animasyonlu sınır önizlemesi** — istemci tarafı dünya sınırı ana chunk'ın merkezinden tüm alanı kaplayana kadar yumuşakça büyür, bekler, küçülerek kaybolur. Kenara yaklaşınca otomatik kapanır, hareketi asla engellemez. `/border`.
+- **Animasyonlu sınır önizlemesi** — kare claim'lerde istemci tarafı dünya sınırı merkezden yumuşakça büyür, bekler, küçülerek kaybolur (kenara yaklaşınca otomatik kapanır, hareketi engellemez). Kare olmayan şekillerde (L, T, şerit…) claim'in *gerçek* çevresi, ana chunk'tan dışa yayılan partiküllerle çizilir. `/border`.
 - **Işınlanma** — `/chome`: geri sayım, hareket/hasar ile iptal, cooldown, isteğe bağlı ücret. Ev noktası varsayılan blok üstü, claim içinde istediğin yere ayarlanabilir.
 - **Ekonomi** — `AUTO` (Vault varsa Vault, yoksa elmas), `VAULT` veya `DIAMOND`. Elmas modu elmas bloğunu 9 sayar, para üstü verir. İki ayrı fiyat seti.
 - **Koruma** — blok, sandık (sınır ötesi çift sandık açığı dahil), etkileşim, PvP, hayvan, tablo/zırh askısı/araç, patlama, yangın (alev oku dahil), sınırı geçen piston ve sıvı, içeri püskürten dispenser, enderman/wither/ravager, giriş yasağı.

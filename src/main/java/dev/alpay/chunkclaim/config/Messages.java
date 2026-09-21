@@ -39,14 +39,14 @@ public class Messages {
     public void reload(String language) {
         this.language = language;
         File dir = new File(plugin.getDataFolder(), "lang");
-        if (!dir.exists() && !dir.mkdirs()) plugin.getLogger().warning("lang klasörü oluşturulamadı");
+        if (!dir.exists() && !dir.mkdirs()) plugin.getLogger().warning("Could not create lang directory");
         for (String code : BUNDLED) {
             if (!new File(dir, code + ".yml").exists()) plugin.saveResource("lang/" + code + ".yml", false);
         }
 
         File file = new File(dir, language + ".yml");
         if (!file.exists()) {
-            plugin.getLogger().warning("Dil dosyası bulunamadı: " + file.getName() + " — 'tr' kullanılıyor");
+            plugin.getLogger().warning("Language file not found: " + file.getName() + " — falling back to 'tr'");
             this.language = "tr";
             file = new File(dir, "tr.yml");
         }

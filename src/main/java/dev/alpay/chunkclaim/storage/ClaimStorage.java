@@ -30,7 +30,7 @@ public class ClaimStorage {
         this.plugin = plugin;
         this.dir = new File(plugin.getDataFolder(), "claims");
         if (!dir.exists() && !dir.mkdirs()) {
-            plugin.getLogger().severe("claims klasörü oluşturulamadı: " + dir);
+            plugin.getLogger().severe("Could not create claims directory: " + dir);
         }
     }
 
@@ -43,7 +43,7 @@ public class ClaimStorage {
                 Claim c = load(f);
                 if (c != null) claims.add(c);
             } catch (Exception e) {
-                plugin.getLogger().log(Level.WARNING, "Claim yüklenemedi: " + f.getName(), e);
+                plugin.getLogger().log(Level.WARNING, "Could not load claim: " + f.getName(), e);
             }
         }
         return claims;
@@ -64,7 +64,7 @@ public class ClaimStorage {
             if (w != null) {
                 blockLoc = new Location(w, y.getInt("block.x"), y.getInt("block.y"), y.getInt("block.z"));
             } else {
-                plugin.getLogger().warning("Claim " + id + " dünyası yüklü değil: " + worldId);
+                plugin.getLogger().warning("Claim " + id + ": world not loaded: " + worldId);
                 return null;
             }
         }
@@ -84,7 +84,7 @@ public class ClaimStorage {
                     try {
                         perms.add(MemberPermission.valueOf(p));
                     } catch (IllegalArgumentException ignored) {
-                        plugin.getLogger().warning("Claim " + id + ": bilinmeyen üye izni " + p);
+                        plugin.getLogger().warning("Claim " + id + ": unknown member permission " + p);
                     }
                 }
                 claim.setMemberPermissions(member, perms);
@@ -134,14 +134,14 @@ public class ClaimStorage {
         try {
             y.save(file);
         } catch (IOException e) {
-            plugin.getLogger().log(Level.SEVERE, "Claim kaydedilemedi: " + claim.getId(), e);
+            plugin.getLogger().log(Level.SEVERE, "Could not save claim: " + claim.getId(), e);
         }
     }
 
     public void delete(Claim claim) {
         File file = new File(dir, claim.getId() + ".yml");
         if (file.exists() && !file.delete()) {
-            plugin.getLogger().warning("Claim dosyası silinemedi: " + file);
+            plugin.getLogger().warning("Could not delete claim file: " + file);
         }
     }
 }

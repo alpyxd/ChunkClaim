@@ -43,7 +43,7 @@ public class ClaimManager {
         claimsByChunk.clear();
         claimsByOwner.clear();
         for (Claim c : storage.loadAll()) index(c);
-        plugin.getLogger().info(claimsById.size() + " claim yüklendi.");
+        plugin.getLogger().info("Loaded " + claimsById.size() + " claims.");
     }
 
     private void index(Claim claim) {
@@ -466,7 +466,7 @@ public class ClaimManager {
 
     public String ownerName(Claim claim) {
         OfflinePlayer op = Bukkit.getOfflinePlayer(claim.getOwner());
-        return op.getName() == null ? "Bilinmiyor" : op.getName();
+        return op.getName() == null ? plugin.messages().raw("unknown-player") : op.getName();
     }
 
     public Map<String, String> placeholders(Claim claim) {

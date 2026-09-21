@@ -34,12 +34,13 @@ public final class ChunkClaimPlugin extends JavaPlugin {
     private ChatPrompt chatPrompt;
     private ClaimBlockItem claimBlockItem;
     private TeleportManager teleports;
+    private ClaimCommand claimCommand;
 
     @Override
     public void onEnable() {
         settings = new Settings(this);
         messages = new Messages(this, settings.language());
-        economy = new EconomyService(this, settings);
+        economy = new EconomyService(this, settings, this::messages);
         storage = new ClaimStorage(this);
         claims = new ClaimManager(this, storage);
         holograms = new HologramManager(this);
@@ -62,16 +63,13 @@ public final class ChunkClaimPlugin extends JavaPlugin {
         pm.registerEvents(new MovementListener(this), this);
         pm.registerEvents(new WorldListener(this), this);
 
-        ClaimCommand claimCommand = new ClaimCommand(this);
+        claimCommand = new ClaimCommand(this);
         PluginCommand cmd = getCommand("claim");
         if (cmd != null) {
             cmd.setExecutor(claimCommand);
             cmd.setTabCompleter(claimCommand);
         }
-        PluginCommand borderCmd = getCommand("border");
-        if (borderCmd != null) borderCmd.setExecutor(new ShortcutCommand(this, claimCommand::showBorder));
-        PluginCommand homeCmd = getCommand("chome");
-        if (homeCmd != null) homeCmd.setExecutor(new ShortcutCommand(this, claimCommand::home));
+        registerShortcuts();
 
         getLogger().info("ChunkClaim aktif. Ekonomi: " + economy.provider().name());
     }
@@ -83,6 +81,15 @@ public final class ChunkClaimPlugin extends JavaPlugin {
         if (border != null) border.clearAll();
         if (claims != null) claims.saveAll();
         if (claimBlockItem != null) claimBlockItem.unregisterRecipe();
+        ShortcutCommand.unregisterAll();
+    }
+
+    /** Dil dosyasındaki alias'larla /border ve /chome kısayollarını (yeniden) kaydeder. */
+    private void registerShortcuts() {
+        ShortcutCommand.unregisterAll();
+        ShortcutCommand.register(this, "border", "border", claimCommand::showBorder);
+        ShortcutCommand.register(this, "chome", "home", claimCommand::home);
+        ShortcutCommand.syncClients();
     }
 
     /** /claim reload */
@@ -92,6 +99,7 @@ public final class ChunkClaimPlugin extends JavaPlugin {
         economy.setup();
         claimBlockItem.registerRecipe();
         holograms.start();
+        registerShortcuts();
     }
 
     public Settings settings() { return settings; }

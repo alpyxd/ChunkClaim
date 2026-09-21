@@ -2,6 +2,7 @@ package dev.alpay.chunkclaim.config;
 
 import dev.alpay.chunkclaim.claim.Claim;
 import dev.alpay.chunkclaim.claim.UpgradeType;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -22,6 +23,9 @@ import java.util.regex.PatternSyntaxException;
 public class Settings {
 
     public enum EconomyType { VAULT, DIAMOND, AUTO }
+
+    /** AUTO: kare claim → world border, diğerleri → partikül. */
+    public enum BorderMode { AUTO, WORLD_BORDER, PARTICLES }
 
     private static final Pattern DEFAULT_NAME_PATTERN = Pattern.compile("^[\\p{L}\\p{N} _'\\-.!?]+$");
 
@@ -54,6 +58,8 @@ public class Settings {
     private double hologramYOffset;
     private int hologramUpdateInterval;
 
+    private BorderMode borderMode;
+    private Color borderParticleColor;
     private long borderExpandMs;
     private long borderHoldMs;
     private long borderShrinkMs;
@@ -139,6 +145,14 @@ public class Settings {
         hologramYOffset = c.getDouble("hologram.y-offset", 1.6);
         hologramUpdateInterval = Math.max(20, c.getInt("hologram.update-interval-ticks", 100));
 
+        String bm = c.getString("border.mode", "AUTO").toUpperCase(Locale.ROOT);
+        try {
+            borderMode = BorderMode.valueOf(bm);
+        } catch (IllegalArgumentException e) {
+            log.warning("Invalid border.mode: " + bm + " — using AUTO");
+            borderMode = BorderMode.AUTO;
+        }
+        borderParticleColor = parseColor(c.getString("border.particle-color", "#55FF55"), Color.LIME);
         borderExpandMs = c.getLong("border.expand-ms", 1500);
         borderHoldMs = c.getLong("border.hold-ms", 4000);
         borderShrinkMs = c.getLong("border.shrink-ms", 1000);
@@ -164,6 +178,21 @@ public class Settings {
 
         titlesEnabled = c.getBoolean("titles.enabled", true);
         chatPromptTimeout = Math.max(10, c.getInt("chat-prompt-timeout-seconds", 60));
+    }
+
+    private Color parseColor(String hex, Color def) {
+        if (hex == null) return def;
+        String h = hex.trim().replace("#", "");
+        if (h.length() != 6) {
+            log.warning("Invalid color: " + hex);
+            return def;
+        }
+        try {
+            return Color.fromRGB(Integer.parseInt(h, 16));
+        } catch (NumberFormatException e) {
+            log.warning("Invalid color: " + hex);
+            return def;
+        }
     }
 
     private Material material(String name, Material def) {
@@ -234,6 +263,8 @@ public class Settings {
     public boolean hologramEnabled() { return hologramEnabled; }
     public double hologramYOffset() { return hologramYOffset; }
     public int hologramUpdateInterval() { return hologramUpdateInterval; }
+    public BorderMode borderMode() { return borderMode; }
+    public Color borderParticleColor() { return borderParticleColor; }
     public long borderExpandMs() { return borderExpandMs; }
     public long borderHoldMs() { return borderHoldMs; }
     public long borderShrinkMs() { return borderShrinkMs; }

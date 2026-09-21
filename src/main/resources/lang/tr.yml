@@ -10,6 +10,21 @@ reloaded: "<green>Yapılandırma yeniden yüklendi."
 player-not-found: "<red>Oyuncu bulunamadı: <white>{player}"
 state-on: "<green>AÇIK"
 state-off: "<red>KAPALI"
+unknown-player: "Bilinmiyor"
+
+# ---------- Ekonomi ----------
+economy:
+  diamond-name: "Elmas"
+  diamond-format: "{amount} Elmas"
+
+# ---------- Kısayol komutları (alias'lar dile göre) ----------
+commands:
+  border:
+    description: "Claim alanının sınırını gösterir"
+    aliases: [sinir, alan, claimborder]
+  home:
+    description: "Claim'ine ışınlanır"
+    aliases: [cev, claimhome]
 
 # ---------- Claim bloğu (eşya) ----------
 claim-block:
