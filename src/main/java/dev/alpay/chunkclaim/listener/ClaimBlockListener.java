@@ -2,8 +2,10 @@ package dev.alpay.chunkclaim.listener;
 
 import dev.alpay.chunkclaim.ChunkClaimPlugin;
 import dev.alpay.chunkclaim.claim.Claim;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -63,6 +65,13 @@ public class ClaimBlockListener implements Listener {
         Claim claim = plugin.claims().getClaimByBlock(block.getLocation());
         if (claim == null) return;
         Player player = event.getPlayer();
+        ItemStack hand = player.getInventory().getItemInMainHand();
+        // Pusula ile sağ tık → claim pusulası (eğilerek de olsa; vanilla lodestone bağlamasının yerine geçer)
+        if (hand.getType() == Material.COMPASS && plugin.settings().compassEnabled()) {
+            event.setCancelled(true);
+            plugin.compass().bind(player, claim, hand);
+            return;
+        }
         if (player.isSneaking()) return; // eğilerek üstüne blok koymaya izin ver
         event.setCancelled(true);
         plugin.menus().openMain(player, claim);

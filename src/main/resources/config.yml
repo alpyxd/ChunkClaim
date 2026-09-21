@@ -124,3 +124,8 @@ titles:
 
 # Chat prompts (name, member add, delete confirm) expire after this many seconds
 chat-prompt-timeout-seconds: 60
+
+# Right-clicking the control block with a compass binds it to the claim
+# (custom name, owner in lore, points to the block even if it is moved). Name/lore in the lang file.
+compass:
+  enabled: true

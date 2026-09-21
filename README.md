@@ -25,6 +25,7 @@
 - Grow by claiming **adjacent chunks** from the live chunk map; release them again for a partial refund. The area can never be split into islands.
 - The block **cannot be broken** by anyone. Deleting a claim takes a confirmation menu **and** typing the claim name in chat — and refunds upgrades + chunks.
 - Move the control block anywhere inside its origin chunk.
+- Right-click the block with a **compass** to get a *Claim Compass*: custom name, owner in the lore, always points to the control block (updates when the block moves; unlinks if the claim is deleted).
 
 **Management GUI** (right-click the block or `/claim`)
 
@@ -154,6 +155,7 @@ Issues and pull requests are welcome. For a new language, copy `src/main/resourc
 - Canlı chunk haritasından **komşu chunk'lar** alarak büyü; bırakınca kısmi iade. Alan hiçbir zaman adalara bölünemez.
 - Blok **kimse tarafından kırılamaz**. Silmek için onay menüsü **ve** claim ismini sohbete yazmak gerekir — geliştirmeler ve chunk'lar iade edilir.
 - Bloğu ana chunk içinde istediğin yere taşı.
+- Bloğa **pusulayla** sağ tıkla → *Claim Pusulası*: özel isim, lore'da sahip, her zaman yönetim bloğunu gösterir (blok taşınınca güncellenir, claim silinince bağlantısı kopar).
 
 **Yönetim menüsü** (bloğa sağ tık veya `/claim`)
 

@@ -233,6 +233,7 @@ public class ClaimManager {
         save(claim);
         plugin.holograms().update(claim);
         plugin.menus().refreshAllFor(claim);
+        plugin.compass().refresh(claim);
         plugin.messages().send(player, "name-changed", Map.of("name", Messages.mm().escapeTags(trimmed)));
         return true;
     }
@@ -242,6 +243,7 @@ public class ClaimManager {
         unindex(claim);
         storage.delete(claim);
         plugin.menus().closeAllFor(claim);
+        plugin.compass().invalidate(claim.getId());
     }
 
     /**
@@ -323,6 +325,7 @@ public class ClaimManager {
         save(claim);
         plugin.holograms().spawn(claim);
         plugin.menus().refreshAllFor(claim);
+        plugin.compass().refresh(claim);
 
         // Oyuncu bloğun içinde kalmasın
         Location up = target.clone().add(0.5, 1.0, 0.5);

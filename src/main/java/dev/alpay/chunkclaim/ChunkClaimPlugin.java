@@ -17,6 +17,7 @@ import dev.alpay.chunkclaim.listener.WorldListener;
 import dev.alpay.chunkclaim.storage.ClaimStorage;
 import dev.alpay.chunkclaim.teleport.TeleportManager;
 import dev.alpay.chunkclaim.util.ClaimBlockItem;
+import dev.alpay.chunkclaim.util.ClaimCompass;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,6 +34,7 @@ public final class ChunkClaimPlugin extends JavaPlugin {
     private MenuManager menus;
     private ChatPrompt chatPrompt;
     private ClaimBlockItem claimBlockItem;
+    private ClaimCompass compass;
     private TeleportManager teleports;
     private ClaimCommand claimCommand;
 
@@ -48,6 +50,7 @@ public final class ChunkClaimPlugin extends JavaPlugin {
         menus = new MenuManager(this);
         chatPrompt = new ChatPrompt(this);
         claimBlockItem = new ClaimBlockItem(this);
+        compass = new ClaimCompass(this);
         teleports = new TeleportManager(this);
 
         claims.loadAll();
@@ -58,6 +61,7 @@ public final class ChunkClaimPlugin extends JavaPlugin {
         pm.registerEvents(menus, this);
         pm.registerEvents(chatPrompt, this);
         pm.registerEvents(teleports, this);
+        pm.registerEvents(compass, this);
         pm.registerEvents(new ClaimBlockListener(this), this);
         pm.registerEvents(new ProtectionListener(this), this);
         pm.registerEvents(new MovementListener(this), this);
@@ -110,4 +114,5 @@ public final class ChunkClaimPlugin extends JavaPlugin {
     public ChatPrompt chatPrompt() { return chatPrompt; }
     public ClaimBlockItem claimBlockItem() { return claimBlockItem; }
     public TeleportManager teleports() { return teleports; }
+    public ClaimCompass compass() { return compass; }
 }

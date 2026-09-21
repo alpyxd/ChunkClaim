@@ -80,6 +80,7 @@ public class Settings {
 
     private boolean titlesEnabled;
     private int chatPromptTimeout;
+    private boolean compassEnabled;
 
     public Settings(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -180,6 +181,7 @@ public class Settings {
 
         titlesEnabled = c.getBoolean("titles.enabled", true);
         chatPromptTimeout = Math.max(10, c.getInt("chat-prompt-timeout-seconds", 60));
+        compassEnabled = c.getBoolean("compass.enabled", true);
     }
 
     private Color parseColor(String hex, Color def) {
@@ -283,4 +285,5 @@ public class Settings {
     public double teleportCost(boolean diamond) { return diamond ? teleportDiamondCost : teleportCost; }
     public boolean titlesEnabled() { return titlesEnabled; }
     public int chatPromptTimeout() { return chatPromptTimeout; }
+    public boolean compassEnabled() { return compassEnabled; }
 }

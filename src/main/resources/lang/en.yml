@@ -35,6 +35,17 @@ claim-block:
     - ""
     - "<yellow>Right-click <gray>to open the management menu."
 
+# ---------- Claim compass ----------
+compass:
+  name: "<aqua><bold>{name}</bold> <gray>Compass"
+  lore:
+    - "<gray>Owner: <white>{owner}"
+    - "<gray>Points to the claim's control block."
+  name-deleted: "<dark_gray>Unlinked Compass"
+  lore-deleted:
+    - "<gray>The claim it was linked to no longer exists."
+compass-bound: "<green>Compass linked to <white>{name}<green>."
+
 # ---------- Hologram ----------
 hologram:
   lines:

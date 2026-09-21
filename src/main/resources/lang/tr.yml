@@ -35,6 +35,17 @@ claim-block:
     - ""
     - "<yellow>Sağ tık <gray>ile yönetim menüsünü aç."
 
+# ---------- Claim pusulası ----------
+compass:
+  name: "<aqua><bold>{name}</bold> <gray>Pusulası"
+  lore:
+    - "<gray>Sahip: <white>{owner}"
+    - "<gray>Claim'in yönetim bloğunu gösterir."
+  name-deleted: "<dark_gray>Bağlantısı Kopmuş Pusula"
+  lore-deleted:
+    - "<gray>Bağlı olduğu claim artık yok."
+compass-bound: "<green>Pusula <white>{name}<green> alanına bağlandı."
+
 # ---------- Hologram ----------
 hologram:
   lines:
